@@ -20,6 +20,60 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+def compile_gic_without_snapshot(repo, xnu, obj, env):
+    """Patch/compile one copied baseline source; never edit the existing tree."""
+    info = json.loads((repo / 'tools/dada/patches/dada-gic-baseline.json').read_text())
+    source = xnu / info['source']
+    if sha(source) != info['baseline_sha256']:
+        raise RuntimeError('GIC source differs from the diagnosed baseline; review before applying patch')
+    copied = obj / 'gic-source' / info['source']
+    copied.parent.mkdir(parents=True)
+    shutil.copyfile(source, copied)
+    patch = repo / 'tools/dada/patches/dada-gic-no-snapshot.patch'
+    subprocess.run(['patch', '--batch', '--fuzz=0', '-p1', '-i', str(patch)],
+                   cwd=obj / 'gic-source', check=True)
+    cwd = xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/osfmk/DEVELOPMENT'
+    common = [f'SRCROOT={xnu}', f'OBJROOT={xnu}/BUILD/obj', f'SYMROOT={xnu}/BUILD/sym',
+              f'DSTROOT={xnu}/BUILD/dst', 'SDKROOT=iphoneos', 'ARCH_CONFIGS=ARM64',
+              'MACHINE_CONFIGS=BCM2837', 'KERNEL_CONFIGS=DEVELOPMENT', 'CC=xnu-clang',
+              'CXX=xnu-clang++', 'CURRENT_MACHINE_CONFIG=BCM2837',
+              'CURRENT_MACHINE_CONFIG_LC=bcm2837', 'ARCH_STRING_FOR_CURRENT_MACHINE_CONFIG=arm64']
+    dry = subprocess.run(['make', '-n', '-B', 'gic_v3_irq.o', *common], cwd=cwd,
+                         env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    lines = [line for line in dry.stdout.splitlines()
+             if 'xnu-clang' in line and ' -c ' in line and '/gic_v3_irq.c' in line]
+    if not lines:
+        raise RuntimeError('No baseline GIC compile command: ' + dry.stdout[-4000:])
+    base, clean, i = shlex.split(lines[-1]), [], 0
+    while i < len(base):
+        flag = base[i]
+        if flag in ('-MF', '-MT', '-MQ', '-o'):
+            i += 2
+            continue
+        if flag not in ('-MD', '-MMD', '-MP') and not flag.endswith('.c'):
+            clean.append(flag)
+        i += 1
+    cmd = clean[:1] + ['-DXNU_TARGET_DADA=1', '-DBCM2837', '-DARM64_BOARD_CONFIG_BCM2837=1',
+                      '-DDADA_GIC_NO_FIRMWARE_SNAPSHOT=1'] + clean[1:]
+    cmd += [f'-I{xnu}/osfmk', '-idirafter', str(xnu / 'osfmk/libsa')]
+    cmd += [str(copied), '-o', str(obj / 'gic_v3_irq.o')]
+    (obj / 'gic_v3_irq.command').write_text(shlex.join(cmd) + '\n')
+    result = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, text=True)
+    (obj / 'gic_v3_irq.log').write_text(result.stdout)
+    if result.returncode:
+        raise RuntimeError(result.stdout[-8000:])
+    # Verify the guarded save/restore code is absent from the compiler input.
+    pre = [flag for flag in cmd if flag != '-c']
+    at = pre.index('-o')
+    pre[at:at+2] = ['-E']
+    text = subprocess.check_output(pre, cwd=cwd, env=env, text=True)
+    if 'gic_save_firmware_state' in text or 'gic_restore_firmware_state' in text:
+        raise RuntimeError('Faulting firmware snapshot remains in GIC compiler input')
+    return {'baseline_source_sha256': info['baseline_sha256'],
+            'firmware_snapshot_disabled': True, 'source_tree_unchanged': sha(source) == info['baseline_sha256']}
+
+
 def check_kernel_layout(kernel, baseline):
     def segments(path):
         data = path.read_bytes()
@@ -65,6 +119,8 @@ def main():
     ap.add_argument('--firmware', type=Path, required=True)
     ap.add_argument('--mesa', type=Path, required=True)
     ap.add_argument('--out', type=Path, required=True)
+    ap.add_argument('--gic-no-firmware-snapshot', action='store_true',
+                    help='apply the diagnosed r2 GIC workaround to an isolated baseline source copy')
     a = ap.parse_args()
     repo = Path(__file__).resolve().parents[2]
     out = a.out.resolve()
@@ -97,12 +153,15 @@ def main():
     cmd[1:1] = [f'-I{obj}', '-DDADA_GPU_EMBEDDED_FIRMWARE=1']
     cwd = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
     subprocess.run(cmd,cwd=cwd,env=env,check=True)
+    gic = compile_gic_without_snapshot(repo, a.xnu, obj, env) if a.gic_no_firmware_snapshot else None
     baseline = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837'
     original = baseline / 'mach.development.bcm2837.link'
     archive = out / 'kernel-objects.a'
     shutil.copyfile(original/'mach.development.bcm2837.a',archive)
     shutil.copyfile(obj/'RedwoodGPU.o',obj/'RedwoodGPU.cpo')
     replacements=[obj/name for name in ['redwood_adreno.o','RedwoodGPU.cpo','dada_adreno.o','dada_gpu_fw.o','dada_gpu_va.o']]
+    if gic:
+        replacements.append(obj / 'gic_v3_irq.o')
     subprocess.run(['llvm-ar','r',str(archive),*map(str,replacements)],check=True)
     flags=shlex.split((original/'mach.development.bcm2837.linkarguments').read_text())
     # Exported linkarguments include a kernel-cache packaging transformation.
@@ -131,7 +190,7 @@ def main():
         'kernel': {'path':final.name,'bytes':final.stat().st_size,'sha256':sha(final)},
         'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
         'hardware_tested':False,'all_baseline_sources_recompiled':False,
-        'layout_verification':layout},indent=2)+'\n')
+        'layout_verification':layout, 'gic_workaround':gic},indent=2)+'\n')
     print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
 
 

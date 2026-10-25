@@ -10,3 +10,6 @@ xnu/files/bsd/sys/dada*.h text eol=lf
 xnu/files/bsd/dev/redwood_adreno.c text eol=lf
 xnu/redwood.patch text eol=lf
 xnu-deps/host/bin/xnu-clang text eol=lf
+
+# Unified patch context has a leading space before original tabs/blank lines.
+tools/dada/patches/*.patch text eol=lf -whitespace

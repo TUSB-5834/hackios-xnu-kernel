@@ -82,6 +82,14 @@
     "baseline_segment_names_preserved": true,
     "r1_layout_regression_rejected": true,
     "launcher_cases_passed": 12,
+    "device_tested": true,
+    "device_boot_succeeded": false,
+    "device_failure": "GICR_ISENABLER0 read in gic_save_firmware_state; ESR 0x96000010, PC 0xfffffff00748fb80"
+  },
+  "diagnostic_r3": {
+    "gic_snapshot_disabled": true,
+    "baseline_source_and_archive_unchanged": true,
+    "launcher_cases_passed": 12,
     "device_tested": false
   }
 }

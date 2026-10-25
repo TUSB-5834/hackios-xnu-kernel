@@ -1,0 +1,40 @@
+--- a/osfmk/arm64/gic_v3_irq.c
++++ b/osfmk/arm64/gic_v3_irq.c
+@@ -98,7 +98,7 @@
+ uint64_t        gic_unhandled_count;
+ uint32_t        gic_last_unhandled;
+ 
+-#if defined(XNU_TARGET_DADA)
++#if defined(XNU_TARGET_DADA) && !defined(DADA_GIC_NO_FIRMWARE_SNAPSHOT)
+ /* UEFI remains resident and needs its interrupt masks back after a RAM run. */
+ static struct {
+ 	bool valid;
+@@ -392,7 +392,7 @@
+ 			/* a driver's */
+ 		} else {
+ 			/* nobody owns this interrupt yet: keep it from storming */
+-#if defined(XNU_TARGET_DADA)
++#if defined(XNU_TARGET_DADA) && !defined(DADA_GIC_NO_FIRMWARE_SNAPSHOT)
+ 			if (intid >= GIC_INTID_SPI_MIN) {
+ 				gic_firmware_masked_spi[intid / 32] |= 1u << (intid % 32);
+ 			}
+@@ -436,7 +436,7 @@
+ 		__builtin_arm_isb(ISB_SY);
+ 		gic_active_iar[cpu] = 0;
+ 	}
+-#if defined(XNU_TARGET_DADA)
++#if defined(XNU_TARGET_DADA) && !defined(DADA_GIC_NO_FIRMWARE_SNAPSHOT)
+ 	if (ml_get_cpu_count() == 1) {
+ 		gic_restore_firmware_state(cpu);
+ 	}
+@@ -564,8 +564,9 @@
+ 	__builtin_arm_wsr64("ICC_SRE_EL1", __builtin_arm_rsr64("ICC_SRE_EL1") | 1);
+ 	__builtin_arm_isb(ISB_SY);
+ 
++	kprintf("dada: initializing GIC without firmware register snapshot\n");
+ 	gicr = gicr_cpu_base[cpu] = gic_find_redistributor();
+-#if defined(XNU_TARGET_DADA)
++#if defined(XNU_TARGET_DADA) && !defined(DADA_GIC_NO_FIRMWARE_SNAPSHOT)
+ 	gic_save_firmware_state(cpu, gicr);
+ #endif
+ 

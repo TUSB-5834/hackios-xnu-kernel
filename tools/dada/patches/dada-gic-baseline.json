@@ -1,0 +1,11 @@
+{
+  "source": "osfmk/arm64/gic_v3_irq.c",
+  "baseline_sha256": "494fb0148358dea044f4d721643522fd58350f515a41875af130f2e6ad3cb368",
+  "observed_failure": {
+    "esr": "0x96000010",
+    "function": "gic_v3_irq_cpu_init",
+    "operation": "GICR_ISENABLER0 read in gic_save_firmware_state",
+    "r2_pc": "0xfffffff00748fb80"
+  },
+  "hardware_fix_verified": false
+}

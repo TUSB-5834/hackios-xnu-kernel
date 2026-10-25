@@ -104,6 +104,29 @@ already stopped loader. It never sends `oem log` before export, because that
 command would replace a completed run's snapshot. Offline tests cover early
 return, export disconnection and logs after return, in addition to prior cases.
 
+### Diagnostic r3 GIC workaround
+
+The retained r2 device log reports ESR `0x96000010`, PC
+`0xfffffff00748fb80`, before GPU initialization. Symbol/disassembly lookup in
+that exact kernel identifies a `GICR_ISENABLER0` read inside the inlined
+`gic_save_firmware_state` in `gic_v3_irq_cpu_init`. The existing local baseline
+has the same snapshot code; its redistributor affinity check completed before
+this read aborted. The earlier platform DT warning does not identify the
+faulting instruction.
+
+`build-gpu-test.py --gic-no-firmware-snapshot` checks the diagnosed baseline
+source hash, patches an isolated source copy, and replaces `gic_v3_irq.o` in
+the copied archive alongside the GPU objects. The patch removes additional
+firmware mask/priority snapshot and restore paths while retaining ordinary
+interrupt initialization. Preprocessing verifies those paths are absent. The
+existing XNU source and build remain unchanged. The patch applies only to the
+recorded local baseline; it does not silently alter other GIC versions.
+
+This is a diagnostic workaround, with no successful r3 device run yet. It also
+disables firmware interrupt-state restoration when returning to the loader;
+manually reboot to Android after testing. New failures require a fresh retained
+log rather than assuming this change fixes the entire boot path.
+
 ## Attribution
 
 Credit to `hxfuxyy/ios-macan` for the original Gen8 backend and Darwin Mesa
