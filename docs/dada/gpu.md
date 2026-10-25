@@ -88,6 +88,22 @@ control payloads. It does not modify the original release package. The local
 XNU baseline is not byte-identical to the old release kernel, so input/battery
 behavior may differ even with GPU disabled.
 
+### Diagnostic r2 correction
+
+The r1 incremental link reused exported kernel-cache flags, including a rename
+of `__LASTDATA_CONST` to `__LAST`. The raw dada XNU baseline retains both segments
+and gives them different early page permissions. r2 removes that transformation
+and checks segment names, segment bounds, the entry point and loader ABI markers
+against the baseline kernel. The regression check rejects r1 and accepts r2.
+This is a confirmed build defect, but the failed r1 device run did not retain a
+kernel log, so it is not confirmed as that run's sole failure cause.
+
+The Windows launcher now captures `result`, `return-reason` and the returned
+`get_staged` snapshot if a start returns immediately. `Logs` also supports an
+already stopped loader. It never sends `oem log` before export, because that
+command would replace a completed run's snapshot. Offline tests cover early
+return, export disconnection and logs after return, in addition to prior cases.
+
 ## Attribution
 
 Credit to `hxfuxyy/ios-macan` for the original Gen8 backend and Darwin Mesa

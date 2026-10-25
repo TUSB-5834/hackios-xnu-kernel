@@ -3,6 +3,7 @@ param(
     [ValidateSet('Start', 'Logs', 'Check', 'Verify')][string]$Mode = 'Start',
     [ValidateRange(0, 86400)][int]$ObserveSeconds = 0,
     [string]$LogDirectory = '',
+    [string]$Manifest = 'package.json',
     [switch]$ShowLog
 )
 
@@ -115,6 +116,8 @@ function Assert-Command([string[]]$Arguments, [string]$Serial) {
     if ($joined -eq 'devices -l') { return }
     if (-not $Serial) { throw 'A target serial is required' }
     if ($Arguments.Count -eq 2 -and $Arguments[0] -eq 'getvar') { return }
+    if ($Arguments.Count -eq 2 -and $Arguments[0] -eq 'get_staged' -and $script:Session -and
+        $Arguments[1] -eq (Join-Path $script:Session 'kernel-final.log')) { return }
     if ($Arguments.Count -eq 2 -and $Arguments[0] -eq 'boot' -and
         $Arguments[1] -eq (Get-PackagePath $script:Package.uefi)) { return }
     if ($Arguments.Count -eq 2 -and $Arguments[0] -eq 'stage' -and
@@ -197,6 +200,29 @@ function Get-Devices {
     return @([regex]::Matches($answer, '(?m)^([^\s]+)\s+fastboot\b') | ForEach-Object { $_.Groups[1].Value })
 }
 
+function Save-StartupFailure {
+    # get_staged preserves the completed run's loader/kernel/panic snapshot.
+    # Do not issue oem log first: it replaces that snapshot with loader-only text.
+    $snapshot = [ordered]@{}
+    foreach ($name in @('runtime', 'result', 'return-reason', 'kernel-heartbeat')) {
+        try {
+            $snapshot[$name] = Invoke-Fastboot @('getvar', $name) 'xnuloader' 3
+        } catch { $snapshot[$name] = $_.Exception.Message }
+    }
+    Save-Json (Join-Path $script:Session 'failure-status.json') $snapshot
+    try {
+        $path = Join-Path $script:Session 'kernel-final.log'
+        $answer = Invoke-Fastboot @('get_staged', $path) 'xnuloader' 8
+        if (-not (Test-Path -LiteralPath $path) -or (Get-Item -LiteralPath $path).Length -eq 0) {
+            throw 'The loader returned no final log bytes'
+        }
+        Write-Host "启动失败日志已保存：$path"
+    } catch {
+        [IO.File]::WriteAllText((Join-Path $script:Session 'log-export-error.txt'), ($_ | Out-String), $script:Utf8)
+        Write-Host '未能取回最终日志；请保留当前手机状态和 USB 连接。'
+    }
+}
+
 function Assert-Loader {
     foreach ($pair in @(
         @('version-bootloader', 'dada-touch-spi-v16-mynewt-r16h'), @('platform', 'dada'),
@@ -265,9 +291,10 @@ function Follow-Logs {
 }
 
 function Start-Main {
+    $kernelAttempted = $false
     try {
         [Console]::OutputEncoding = $script:Utf8
-        $manifest = Join-Path $script:Root 'package.json'
+        $manifest = Get-PackagePath $Manifest
         $script:Package = Get-Content -LiteralPath $manifest -Raw -Encoding UTF8 | ConvertFrom-Json
         $sessionName = Get-Date -Format 'yyyyMMdd-HHmmss-fff'
         $logBase = if ([string]::IsNullOrWhiteSpace($LogDirectory)) {
@@ -322,6 +349,10 @@ function Start-Main {
             Write-Host ('电量=' + (Get-VariableValue 'battery-soc') + '%')
             return 0
         }
+        if ($Mode -eq 'Logs' -and $runtime -ne 'running') {
+            Save-StartupFailure
+            throw "XNU is $runtime; saved the loader's final failure snapshot"
+        }
         if ($runtime -eq 'running') {
             Write-Host '手机已有 iOS 在运行，保留当前系统，仅接入日志。要启动本包，请先手动回到原厂 FASTBOOT。'
         } else {
@@ -346,6 +377,7 @@ function Start-Main {
             $payload = Invoke-Fastboot @('stage', (Get-PackagePath $script:Package.payload)) 'xnuloader' 120
             Write-Host $payload
             Write-Host '[5/5] 启动 iOS 16.5...'
+            $kernelAttempted = $true
             $null = Invoke-Fastboot @('oem', 'persist') 'xnuloader' 30
             if ((Get-VariableValue 'runtime') -ne 'running') { throw 'XNU did not enter running state; inspect logs' }
         }
@@ -354,6 +386,7 @@ function Start-Main {
     } catch {
         $message = $_.Exception.Message
         if ($script:Session) { [IO.File]::WriteAllText((Join-Path $script:Session 'error.txt'), ($_ | Out-String), $script:Utf8) }
+        if ($kernelAttempted -and $script:Session) { Save-StartupFailure }
         Write-Host "停止：$message" -ForegroundColor Red
         Write-Host "日志：$script:Session"
         Write-Host '没有执行刷写、清除分区或自动重启。'

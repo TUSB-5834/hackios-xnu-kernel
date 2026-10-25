@@ -77,5 +77,11 @@
     "diagnostic_kernel_linked": true,
     "all_xnu_sources_recompiled": false,
     "device_tested": false
+  },
+  "diagnostic_r2": {
+    "baseline_segment_names_preserved": true,
+    "r1_layout_regression_rejected": true,
+    "launcher_cases_passed": 12,
+    "device_tested": false
   }
 }

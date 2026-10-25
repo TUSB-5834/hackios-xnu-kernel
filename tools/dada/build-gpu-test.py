@@ -13,10 +13,49 @@ from pathlib import Path
 import shlex
 import shutil
 import subprocess
+import struct
 
 
 def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def check_kernel_layout(kernel, baseline):
+    def segments(path):
+        data = path.read_bytes()
+        magic, cpu, _, kind, count, cmdbytes, _, _ = struct.unpack_from('<8I', data)
+        if magic != 0xfeedfacf or cpu != 0x100000c or kind != 2:
+            raise RuntimeError('Expected ARM64 Mach-O kernel executable')
+        at = 32
+        result = {}
+        entry = 0
+        for _ in range(count):
+            cmd, size = struct.unpack_from('<II', data, at)
+            if size < 8 or at + size > 32 + cmdbytes:
+                raise RuntimeError('Invalid load command')
+            if cmd == 0x19:
+                name = data[at+8:at+24].rstrip(b'\0').decode()
+                va, vmbytes, off, filebytes = struct.unpack_from('<4Q', data, at+24)
+                if off + filebytes > len(data) or filebytes > vmbytes:
+                    raise RuntimeError('Invalid segment bounds')
+                result[name] = vmbytes
+            elif cmd == 5:
+                entry = struct.unpack_from('<Q', data, at+16+32*8)[0]
+            at += size
+        if at != 32 + cmdbytes or not entry:
+            raise RuntimeError('Kernel entry/load commands are missing')
+        for marker in (b'XNULDRST', b'XNULIVE!', b'XNULIVE2'):
+            if data.find(marker) < 0:
+                raise RuntimeError(f'Missing loader ABI marker: {marker!r}')
+        return result
+    expected, actual = segments(baseline), segments(kernel)
+    if set(expected) != set(actual):
+        raise RuntimeError(f'Segment names differ from baseline: {set(expected) ^ set(actual)}')
+    for name in ('__LASTDATA_CONST', '__LAST'):
+        if bool(expected.get(name)) != bool(actual.get(name)):
+            raise RuntimeError(f'{name} presence/emptiness differs from baseline')
+    return {'baseline_segment_names_preserved': True,
+            'last_data_const_separate': True, 'loader_abi_markers_present': True}
 
 
 def main():
@@ -66,6 +105,9 @@ def main():
     replacements=[obj/name for name in ['redwood_adreno.o','RedwoodGPU.cpo','dada_adreno.o','dada_gpu_fw.o','dada_gpu_va.o']]
     subprocess.run(['llvm-ar','r',str(archive),*map(str,replacements)],check=True)
     flags=shlex.split((original/'mach.development.bcm2837.linkarguments').read_text())
+    # Exported linkarguments include a kernel-cache packaging transformation.
+    # This loader consumes a raw kernel, matching the baseline .unstripped file.
+    flags = [flag for flag in flags if flag != '-Wl,-rename_segment,__LASTDATA_CONST,__LAST']
     flags+=['-Wl,-alias_list,'+str(original/'mach.development.bcm2837.alias.exp'),
         '-Wl,-sectcreate,__LINKINFO,__symbolsets,'+str(baseline/'symbolsets.plist'),
         '-Wl,-segprot,__LINKINFO,r--,r--', '-Wl,-force_load,'+str(archive)]
@@ -78,6 +120,7 @@ def main():
     if result.returncode: raise RuntimeError(result.stdout[-12000:])
     final=out/'mach.development.dada-gpu-diagnostic'
     subprocess.run(['strip','-S','-o',str(final),str(kernel)],env=env,check=True)
+    layout = check_kernel_layout(final, baseline/'mach.development.bcm2837')
     symbols=subprocess.check_output(['llvm-nm',str(kernel)],text=True)
     if '_dada_adreno_init' not in symbols or '_dada_gmu_plan_firmware' not in symbols:
         raise RuntimeError('New backend is absent from linked kernel')
@@ -87,7 +130,8 @@ def main():
         'baseline_archive_sha256':sha(original/'mach.development.bcm2837.a'),
         'kernel': {'path':final.name,'bytes':final.stat().st_size,'sha256':sha(final)},
         'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
-        'hardware_tested':False,'all_baseline_sources_recompiled':False},indent=2)+'\n')
+        'hardware_tested':False,'all_baseline_sources_recompiled':False,
+        'layout_verification':layout},indent=2)+'\n')
     print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
 
 
