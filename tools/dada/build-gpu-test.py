@@ -1,0 +1,94 @@
+#!/usr/bin/env python3
+"""Compile GPU objects and relink a configured dada kernel archive, in isolation.
+
+The baseline archive contains all existing XNU objects, including the device's
+CPU/GIC/touch adaptations. Only GPU objects are replaced. No baseline files are
+modified. Firmware remains in the local output and is never added to Git.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import shlex
+import shutil
+import subprocess
+
+
+def sha(p):
+    return hashlib.sha256(p.read_bytes()).hexdigest()
+
+
+def main():
+    ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument('--xnu', type=Path, required=True)
+    ap.add_argument('--env', type=Path, required=True)
+    ap.add_argument('--firmware', type=Path, required=True)
+    ap.add_argument('--mesa', type=Path, required=True)
+    ap.add_argument('--out', type=Path, required=True)
+    a = ap.parse_args()
+    repo = Path(__file__).resolve().parents[2]
+    out = a.out.resolve()
+    out.mkdir(parents=True, exist_ok=False)
+    obj = out / 'objects'
+    # Same compiler flags and SDK as the baseline, with isolated output.
+    subprocess.run(['python3', str(repo / 'tools/dada/check-gpu-objects.py'),
+        '--xnu', str(a.xnu), '--env', str(a.env), '--out', str(obj), '--mesa', str(a.mesa)], check=True)
+    embedded = obj / 'sys/dada_gpu_embedded.h'
+    embedded.parent.mkdir()
+    rows = []
+    text = ['/* Generated local firmware; excluded from source control. */']
+    for i, name in enumerate(['gen80000_gmu.bin', 'gen80000_sqe.fw', 'gen80000_aqe.fw']):
+        p = a.firmware / name
+        data = p.read_bytes()
+        text.append(f'static const uint8_t dada_fw_{i}[] __attribute__((aligned(64))) = {{')
+        text.extend(','.join(f'0x{v:02x}' for v in data[n:n+32])+',' for n in range(0,len(data),32))
+        text.append('};')
+        rows.append({'name': name, 'bytes': len(data), 'sha256': sha(p)})
+    text.append('static const uint8_t *dada_embedded_file(const char *dir, const char *name, uint64_t *size) {')
+    text.append('if (strcmp(dir,"fw")) return NULL;')
+    for i, row in enumerate(rows):
+        text.append(f'if (!strcmp(name,"{row["name"]}")) {{ *size=sizeof(dada_fw_{i}); return dada_fw_{i}; }}')
+    text.extend(['return NULL;', '}'])
+    embedded.write_text('\n'.join(text)+'\n')
+    env_bytes = subprocess.check_output(['bash','-c','source "$1"; env -0','gpu-build',str(a.env)])
+    env = dict(item.split('=',1) for item in env_bytes.decode().split('\0') if '=' in item)
+    env['XNU_TARGET'] = 'dada'
+    cmd = shlex.split((obj / 'dada_adreno.command').read_text())
+    cmd[1:1] = [f'-I{obj}', '-DDADA_GPU_EMBEDDED_FIRMWARE=1']
+    cwd = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
+    subprocess.run(cmd,cwd=cwd,env=env,check=True)
+    baseline = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837'
+    original = baseline / 'mach.development.bcm2837.link'
+    archive = out / 'kernel-objects.a'
+    shutil.copyfile(original/'mach.development.bcm2837.a',archive)
+    shutil.copyfile(obj/'RedwoodGPU.o',obj/'RedwoodGPU.cpo')
+    replacements=[obj/name for name in ['redwood_adreno.o','RedwoodGPU.cpo','dada_adreno.o','dada_gpu_fw.o','dada_gpu_va.o']]
+    subprocess.run(['llvm-ar','r',str(archive),*map(str,replacements)],check=True)
+    flags=shlex.split((original/'mach.development.bcm2837.linkarguments').read_text())
+    flags+=['-Wl,-alias_list,'+str(original/'mach.development.bcm2837.alias.exp'),
+        '-Wl,-sectcreate,__LINKINFO,__symbolsets,'+str(baseline/'symbolsets.plist'),
+        '-Wl,-segprot,__LINKINFO,r--,r--', '-Wl,-force_load,'+str(archive)]
+    flags+=shlex.split((original/'mach.development.bcm2837.linkarchives').read_text())
+    kernel=out/'mach.development.dada-gpu-diagnostic.unstripped'
+    cmd=['xnu-clang',*flags,'-o',str(kernel)]
+    (out/'link.command').write_text(shlex.join(cmd)+'\n')
+    result=subprocess.run(cmd,env=env,stdout=subprocess.PIPE,stderr=subprocess.STDOUT,text=True)
+    (out/'link.log').write_text(result.stdout)
+    if result.returncode: raise RuntimeError(result.stdout[-12000:])
+    final=out/'mach.development.dada-gpu-diagnostic'
+    subprocess.run(['strip','-S','-o',str(final),str(kernel)],env=env,check=True)
+    symbols=subprocess.check_output(['llvm-nm',str(kernel)],text=True)
+    if '_dada_adreno_init' not in symbols or '_dada_gmu_plan_firmware' not in symbols:
+        raise RuntimeError('New backend is absent from linked kernel')
+    if any(line.split()[-2:-1]==['U'] for line in symbols.splitlines()):
+        raise RuntimeError('Linked kernel contains undefined symbols')
+    (out/'build.json').write_text(json.dumps({'method':'recompile GPU objects and relink full baseline XNU archive',
+        'baseline_archive_sha256':sha(original/'mach.development.bcm2837.a'),
+        'kernel': {'path':final.name,'bytes':final.stat().st_size,'sha256':sha(final)},
+        'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
+        'hardware_tested':False,'all_baseline_sources_recompiled':False},indent=2)+'\n')
+    print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
+
+
+if __name__=='__main__': main()

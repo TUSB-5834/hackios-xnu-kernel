@@ -91,6 +91,9 @@
  * cmd-db.c, drivers/firmware/qcom/qcom_scm{,-smc}.c, drivers/soc/qcom/mdt_loader.c. The phone's
  * vendor kernel agrees on every offset used here, and is the only source for the frequency counter.
  */
+#if defined(XNU_TARGET_DADA)
+#include <sys/dada_adreno.h>
+#endif
 #include <kern/clock.h>
 #include <libkern/libkern.h>
 #include <mach/mach_types.h>
@@ -3129,6 +3132,9 @@ gpu_block_stop(void)
 void
 redwood_adreno_quiesce(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_adreno_quiesce(); return;
+#endif
 	if (cx_off) {
 		return;
 	}
@@ -3295,6 +3301,9 @@ static void gpu_block_stop(void);
 void
 redwood_gpu_stop(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_stop(); return;
+#endif
 	if (gpu_kept) {
 		uint32_t waited = 0;
 
@@ -3319,6 +3328,9 @@ redwood_gpu_stop(void)
 void
 redwood_adreno_stop(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_adreno_stop(); return;
+#endif
 	uint32_t dirty = 0;
 
 	if (gpu_kept && !(PE_parse_boot_argn("adreno_dirty", &dirty, sizeof(dirty)) && dirty)) {
@@ -3329,6 +3341,9 @@ redwood_adreno_stop(void)
 bool
 redwood_gpu_ready(void)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_ready();
+#endif
 	return gpu_kept;
 }
 
@@ -3336,6 +3351,9 @@ redwood_gpu_ready(void)
 bool
 redwood_gpu_parameter(uint32_t which, uint64_t *value)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_parameter(which, value);
+#endif
 	switch (which) {
 	case 0x01:                              /* GPU_ID: none, the chip ID says it */
 	case 0x06:                              /* GMEM_BASE */
@@ -3394,6 +3412,9 @@ redwood_gpu_parameter(uint32_t which, uint64_t *value)
 uint64_t
 redwood_gpu_address(uint64_t size)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_address(size);
+#endif
 	size = gpu_address_span(size);
 	for (unsigned i = 0; i < gpu_free_count; i++) {
 		if (gpu_free[i].size >= size) {
@@ -3416,6 +3437,9 @@ redwood_gpu_address(uint64_t size)
 void
 redwood_gpu_address_free(uint64_t address, uint64_t size)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_address_free(address, size); return;
+#endif
 	unsigned at;
 
 	size = gpu_address_span(size);
@@ -3461,6 +3485,9 @@ void
 redwood_gpu_space(uint64_t *used, uint32_t *live, uint64_t *largest, unsigned *holes, unsigned *most, uint64_t *lost,
     uint32_t *refused)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_space(used, live, largest, holes, most, lost, refused); return;
+#endif
 	*largest = 0;
 	for (unsigned i = 0; i < gpu_free_count; i++) {
 		if (gpu_free[i].size > *largest) {
@@ -3479,18 +3506,27 @@ redwood_gpu_space(uint64_t *used, uint32_t *live, uint64_t *largest, unsigned *h
 bool
 redwood_gpu_map(uint64_t address, uint64_t phys, bool read_only)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_map(address, phys, read_only);
+#endif
 	return space_map(&core_space, address, phys, PTE_CORE | (read_only ? PTE_READ_ONLY : 0));
 }
 
 void
 redwood_gpu_mapped(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_mapped(); return;
+#endif
 	space_commit(&core_space);
 }
 
 void
 redwood_gpu_unmap(uint64_t address, uint64_t size)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_unmap(address, size); return;
+#endif
 	uint32_t context = smmu_context(&core_space);
 
 	for (uint64_t offset = 0; offset < size; offset += 4096) {
@@ -3507,6 +3543,9 @@ redwood_gpu_unmap(uint64_t address, uint64_t size)
 void
 redwood_gpu_to_memory(void *start, uint64_t size)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_to_memory(start, size); return;
+#endif
 	to_memory((vm_offset_t)start, size);
 }
 
@@ -3514,6 +3553,9 @@ redwood_gpu_to_memory(void *start, uint64_t size)
 bool
 redwood_gpu_done(uint32_t fence)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_done(fence);
+#endif
 	volatile uint32_t *word = (volatile uint32_t *)(core_scratch.memory + GPU_FENCE_AT);
 
 	to_memory((vm_offset_t)word, 4);
@@ -3523,6 +3565,9 @@ redwood_gpu_done(uint32_t fence)
 uint32_t
 redwood_gpu_last(void)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_last();
+#endif
 	return gpu_fence;
 }
 
@@ -3578,6 +3623,9 @@ gpu_times(void)
 void
 redwood_gpu_worked(uint64_t *microseconds, uint32_t *submissions, uint32_t by[7])
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_worked(microseconds, submissions, by); return;
+#endif
 	gpu_times();
 	*microseconds = gpu_ticks * 10 / 192;
 	*submissions = gpu_timed_count;
@@ -3595,6 +3643,9 @@ redwood_gpu_worked(uint64_t *microseconds, uint32_t *submissions, uint32_t by[7]
 uint32_t
 redwood_gpu_submit(const uint64_t *addresses, const uint32_t *words, uint32_t count)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_submit(addresses, words, count);
+#endif
 	uint32_t wanted = 26 + 4 * count, room = 0;
 
 	for (int i = 0; i < 20000; i++) {
@@ -3640,6 +3691,9 @@ redwood_gpu_submit(const uint64_t *addresses, const uint32_t *words, uint32_t co
 void
 redwood_gpu_report(const char *why)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_gpu_report(why); return;
+#endif
 	uint32_t context = smmu_context(&core_space);
 
 	printf("adreno: gpu: %s: submission %u is the last, the core has done %u; ring: read up to %u, written up to %u; status "
@@ -3712,6 +3766,9 @@ redwood_gpu_report(const char *why)
 bool
 redwood_gpu_recover(void)
 {
+#if defined(XNU_TARGET_DADA)
+	return dada_gpu_recover();
+#endif
 	uint32_t fence_status;
 
 	if (!gpu_kept || !gpu_recover) {
@@ -3816,6 +3873,9 @@ static struct block tsens = { "tsens1", 0x0c265000, 0x200 };
 void
 redwood_adreno_minute(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_adreno_minute(); return;
+#endif
 	int32_t tenths[2];
 
 	if (!gpu_kept) {
@@ -4019,6 +4079,9 @@ start_by_itself(void)
 void
 redwood_adreno_init(void)
 {
+#if defined(XNU_TARGET_DADA)
+	dada_adreno_init(); return;
+#endif
 	static const char *const what[] = {
 		"", "the clocks outside", "the fuses", "the clock controller", "the CX half's power", "the clocks", "the first words",
 		"the GMU's RPMh sequencer", "the SMMU", "an SMMU context", "the GMU's memory", "TrustZone", "the zap shader's header",

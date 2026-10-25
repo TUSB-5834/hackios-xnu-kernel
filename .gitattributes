@@ -3,3 +3,10 @@ xnuloader/dada/** -text
 uefi/dada/** -text
 tools/dada/** -text
 docs/dada/** -text
+
+# Keep new GPU sources and compiler scripts usable in WSL checkouts.
+xnu/files/bsd/dev/dada*.c text eol=lf
+xnu/files/bsd/sys/dada*.h text eol=lf
+xnu/files/bsd/dev/redwood_adreno.c text eol=lf
+xnu/redwood.patch text eol=lf
+xnu-deps/host/bin/xnu-clang text eol=lf

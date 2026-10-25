@@ -6,6 +6,7 @@
 HB="$(cd "$(dirname "$0")" && pwd)"
 case "$(basename "$0")" in *++) drv=clang++; extra=(-fno-use-cxa-atexit);; *) drv=clang; extra=();; esac
 args=()
+[ "${XNU_TARGET:-redwood}" != dada ] || args+=(-DXNU_TARGET_DADA=1)
 for a in "$@"; do
   case "$a" in
     -enable-trivial-auto-var-init-zero-knowing-it-will-be-removed-from-clang) ;;

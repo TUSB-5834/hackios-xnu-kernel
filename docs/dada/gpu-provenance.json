@@ -1,0 +1,81 @@
+{
+  "ios_macan_commit": "bf6106be492670acd05fac0ee7b7d037a48eafd9",
+  "ios_macan_url": "https://github.com/hxfuxyy/ios-macan",
+  "sources": [
+    {
+      "path": "kernel/files/bsd/dev/macan_adreno.c",
+      "sha256": "ff9e4f4496daec465bf1ff4fa76af9e2ceb40d9db042204086881abc56e8d8e7"
+    },
+    {
+      "path": "tools/mesa/mesa-darwin.patch",
+      "sha256": "54bfb50ecd250a885ae4dfbc6436429ea7db25ee460913cb67c973720cb5432f"
+    },
+    {
+      "path": "tools/mesa/drm-shim/drm_shim.c",
+      "sha256": "549d50451fdb98f6f902f2e679a1857f76bd5509cc7c2f0f358f32000223aeea"
+    }
+  ],
+  "device_tree": "dada stock-vendor-boot-a.dts",
+  "chip_id": "0x44050001",
+  "gmu_revision": "0x08000100",
+  "gmem_bytes": 12582912,
+  "zap_region": "0x9b09a000",
+  "gpucc_hub_rcgr": "0x93ec",
+  "gpucc_memnoc_cbcr": "0x90f4",
+  "noncontext_register_count": 40,
+  "device_tested": false,
+  "hardware_references": [
+    {
+      "repository": "OnePlusOSS/android_kernel_modules_and_devicetree_oneplus_sm8750",
+      "branch": "oneplus/sm8750_b_16.0.0_oneplus_13",
+      "verified_branch_head": "d50b305f7da9e14715a25120a4ac7b1a4b8b97c3",
+      "path": "vendor/qcom/opensource/graphics-kernel/",
+      "license": "GPL-2.0-only",
+      "files": [
+        {
+          "name": "adreno-gpulist.h",
+          "sha256": "7faff3fd1afc101dd1db984a9ca632ce884e8406fa856d4f60632e281077f3f6"
+        },
+        {
+          "name": "adreno_gen8.c",
+          "sha256": "3379f615fd4f350cf22ef60920891df3b7f479044947f3a714e26d22c8e2b56e"
+        },
+        {
+          "name": "adreno_gen8_gmu.c",
+          "sha256": "79e19e71c1faa2f405f1a047fbbff0497c64311bfde83c61e4f21079c9c6742e"
+        },
+        {
+          "name": "gen8_reg.h",
+          "sha256": "e85cb422ed221896433afcd6d931fd129f4c8e2edb730d15dfc1fc71c9aa51e2"
+        }
+      ]
+    },
+    {
+      "repository": "OnePlusOSS/android_kernel_oneplus_sm8750",
+      "branch": "oneplus/sm8750_b_16.0.0_oneplus_13",
+      "verified_branch_head": "6028f47faddaa27700f8dd3a1d83906ea8f27170",
+      "files": [
+        {
+          "name": "gpucc-sun.c",
+          "sha256": "4b7bc6e397d353baf9332a498a858603b00e4c54c484f958879e2f68e3c8246b"
+        },
+        {
+          "name": "gcc-sun.c",
+          "sha256": "8e2198b7ee9dfd306bafb5ff2343d38128ceb2bae98b676f7ebbcb0f16ad1326"
+        }
+      ]
+    }
+  ],
+  "device_tree_sha256": "1ad734dc058f89d9b24b0061e557f8eb4df691397f44c7aebbf5b16b904c5949",
+  "ubwc_mode": 5,
+  "macan_license_notice": "No per-file notice in imported driver/shim and no top-level LICENSE in pinned revision",
+  "verification": {
+    "kernel_objects_compiled": 5,
+    "drm_shim_compiled": true,
+    "gpu_abi_symbols_resolved": true,
+    "host_asan_ubsan_passed": true,
+    "diagnostic_kernel_linked": true,
+    "all_xnu_sources_recompiled": false,
+    "device_tested": false
+  }
+}
