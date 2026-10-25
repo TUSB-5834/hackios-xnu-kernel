@@ -1,0 +1,89 @@
+--- a/bsd/dev/dada_touch.c
++++ b/bsd/dev/dada_touch.c
+@@ -26,6 +26,22 @@
+ extern vm_offset_t ml_io_map_unmappable(vm_offset_t, vm_size_t, unsigned int);
+ extern kern_return_t thread_terminate(thread_t);
+ 
++extern void redwood_tl(const char *format, ...) __printflike(1, 2);
++static int touch_note(const char *format, ...) __printflike(1, 2);
++static int
++touch_note(const char *format, ...)
++{
++    char line[192];
++    va_list args;
++    va_start(args, format);
++    vsnprintf(line, sizeof(line), format, args);
++    va_end(args);
++    redwood_tl("%s", line);
++    return printf("%s", line);
++}
++/* Preserve the console log and also mirror diagnosis into the loader live log. */
++#define printf touch_note
++
+ #define GCC_PA 0x00100000UL
+ #define TLMM_PA 0x0f000000UL
+ #define SE_PA 0x00a88000UL
+@@ -55,7 +71,7 @@
+ }
+ static void firmware_worker(__unused void *arg,__unused wait_result_t wait) {
+     volatile struct dada_touch_shared *s=firmware_touch;
+-    uint32_t dropped=s->dropped;
++    uint32_t dropped=s->dropped, polls=0, invalid=0;
+     printf("dada-touch: UEFI event bridge online state=%u\n",s->state);
+     while(!stopping) {
+         __asm__ volatile("dmb oshld" ::: "memory");
+@@ -67,7 +83,7 @@
+         while(consumer!=producer) {
+             struct dada_touch_event e=s->events[consumer%DADA_TOUCH_RING];consumer++;
+             if(e.id>=DADA_TCM_CONTACTS || e.x>65535 || e.y>65535 || e.type<1 || e.type>3) {
+-                firmware_release();continue;
++                firmware_release();invalid++;continue;
+             }
+             unsigned type=e.type;
+             if(type==REDWOOD_TOUCH_UP && !firmware_down[e.id])continue;
+@@ -75,9 +91,15 @@
+             firmware_x[e.id]=(uint16_t)e.x;firmware_y[e.id]=(uint16_t)e.y;
+             firmware_down[e.id]=type!=REDWOOD_TOUCH_UP;
+             redwood_touch_post(type,e.id,e.x,e.y);samples++;
++            if(samples<=32)
++                printf("dada-touch: UEFI event %llu type=%u id=%u x=%u y=%u\n",
++                    samples,type,e.id,e.x,e.y);
+         }
+         __asm__ volatile("dmb oshst" ::: "memory");s->consumer=consumer;
+         __asm__ volatile("dsb sy" ::: "memory");
++        if(++polls%1250==0)
++            printf("dada-touch: UEFI state=%u error=%d frames=%u events=%llu dropped=%u invalid=%u\n",
++                s->state,(int32_t)s->error,s->frames,samples,s->dropped,invalid);
+         if(s->state!=DADA_TOUCH_READY)break;
+         pause_us(NULL,4000);
+     }
+@@ -341,7 +363,9 @@
+ {
+     thread_t thread;
+     uint32_t allow_mmio = 0;
+-    if (!PE_parse_boot_argn("dada_touch",&mode,sizeof(mode)) || !mode) return;
++    PE_parse_boot_argn("dada_touch",&mode,sizeof(mode));
++    printf("dada-touch: init requested mode=%u; live mirror enabled\n",mode);
++    if (!mode) return;
+     if(mode==3) {
+         uint64_t pa=0;
+         if(!PE_parse_boot_argn("dada_touch_shared_pa",&pa,sizeof(pa)) ||
+@@ -350,14 +374,17 @@
+         }
+         vm_offset_t base=ml_io_map_unmappable(pa&~0x3fffULL,
+             ((pa&0x3fff)+sizeof(struct dada_touch_shared)+0x3fff)&~0x3fffULL,VM_WIMG_WCOMB);
+-        if(!base)return;
++        if(!base) {printf("dada-touch: cannot map UEFI shared page\n");return;}
+         firmware_touch=(volatile struct dada_touch_shared *)(base+(pa&0x3fff));
+         if(firmware_touch->magic!=DADA_TOUCH_MAGIC || firmware_touch->version!=DADA_TOUCH_VERSION ||
+             firmware_touch->size!=sizeof(*firmware_touch)) {
+             printf("dada-touch: incompatible UEFI shared ABI\n");firmware_touch=NULL;return;
+         }
++        printf("dada-touch: UEFI shared ABI v%u size=%u state=%u error=%d\n",
++            firmware_touch->version,firmware_touch->size,firmware_touch->state,(int32_t)firmware_touch->error);
+         memset(firmware_down,0,sizeof(firmware_down));stopping=0;running=1;samples=0;
+         if(kernel_thread_start(firmware_worker,NULL,&thread)!=KERN_SUCCESS) {
++            printf("dada-touch: cannot create UEFI worker\n");
+             running=0;firmware_touch->stop=1;__asm__ volatile("dsb sy" ::: "memory");
+         } else thread_deallocate(thread);
+         return;

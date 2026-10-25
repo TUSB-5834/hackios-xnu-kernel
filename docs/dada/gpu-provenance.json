@@ -110,6 +110,29 @@
   },
   "diagnostic_r5": {
     "dada_gpu_init_hook_linked": true,
-    "device_tested": false
+    "device_tested": true,
+    "tested_dada_gpu_step": 1,
+    "gpu_diagnostic_executed": true,
+    "gcc_and_rpmh_read_completed": true,
+    "bsd_init_completed": true,
+    "observed_runtime": "running",
+    "observed_heartbeat_range": [1, 7],
+    "log_capture_later_failed": true,
+    "gmu_hfi_tested": false,
+    "hardware_acceleration_verified": false
+  },
+  "diagnostic_r6": {
+    "touch_mode_mismatch_diagnosed": true,
+    "previous_package_touch_mode": 4,
+    "touch_mode": 3,
+    "touch_shared_abi_headers_match": true,
+    "touch_live_log_linked": true,
+    "baseline_source_and_archive_unchanged": true,
+    "launcher_cases_passed": 12,
+    "manifests_verified": 4,
+    "system_boot_uefi_hashes_preserved": true,
+    "kernel_sha256": "4ea6e5a6559076a8f94e6c916963613032cf17b7f49c79b7a6a273aa63e81d95",
+    "device_tested": false,
+    "touch_working_verified": false
   }
 }

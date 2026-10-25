@@ -161,9 +161,49 @@ baseline, not successful GPU initialization or acceleration.
 input source to call `redwood_adreno_init` before that dada return. The backend
 still does nothing for `dada_gpu=0` or an absent argument. The builder replaces
 only that input object and verifies the call in the final kernel disassembly.
-r5 defaults to `dada_gpu=1`; completion of that diagnostic must be confirmed by
-device log announcements before trying the GMU sequence. Keep r4 for a software
-boot comparison. r5 has no device result yet and supplies no hardware acceleration.
+r5 defaults to `dada_gpu=1`. The 2026-10-25 device run
+`20261025-203446-862` records the embedded GMU firmware preflight, all four GCC
+register reads, RPMh rail lookups and `dada-gpu: step 1: done`. The backend reports
+`nothing written` during its three-second observation, then returns to system
+startup. BSD initialization completes, SpringBoard emits logs, and runtime remains
+`running` with heartbeat increasing from 1 to 7. No kernel panic is present in
+the captured kernel log. PC fastboot log transport subsequently fails; long-term
+stability is not established by this run.
+
+The peripheral-read diagnostic is therefore verified on dada. GMU/HFI and GPU
+command execution remain untested. The existing r5 `Start-GMU-Test.cmd` requests
+steps 1 through 13; run it from stock FASTBOOT to test clocks/SMMU/GMU/HFI, and
+retain the first failed step's log. It does not request GX/SQE/ZAP or enable
+hardware acceleration. Keep r4 for a software boot comparison.
+
+### Diagnostic r6 touch bridge
+
+The r5 package inherited `dada_touch=4` from the original r16h release. The
+local XNU source used to build this diagnostic has only native modes 1/2 and
+UEFI event-ring mode 3; mode 4 immediately returns. The original release's
+newer mode-4 native touch driver is not present in this local source baseline.
+
+r6 uses `dada_touch=3` with the preserved r16h loader and `bootcpu=1`, so the
+loader can poll the touch controller on its observer CPU and publish events to
+the kernel. `--dada-touch-live-log` checks that both shared ABI headers match,
+then patches and compiles an isolated, hash-checked `dada_touch.c` copy. It
+mirrors initialization, errors, periodic counters and the first 32 events into
+the loader live log. The final kernel is checked for the event worker and the
+live-log call. The existing source tree, archive and original package are preserved.
+
+`tools/dada/package-gpu-test.py --source /path/to/local-release --build /path/to/r6-build
+--out /path/to/new-package` creates the local r6 package with explicit, unique
+touch/GPU boot options. `Start-Touch-Test.cmd` requests touch mode 3 and GPU
+step 1; `Start-No-Touch-Control.cmd` disables touch with the same kernel and GPU
+step 1. The other entries retain GPU-off and step-13 comparisons.
+
+The r6 build, all four manifests' SHA-256/XNUP contents, original System/Boot/UEFI
+hashes, APFS geometry and 12 offline launcher cases passed. No phone commands
+were sent by these offline tests. Touch remains unverified on hardware: a
+successful mode selection does not prove UEFI SPI initialization or backboardd
+response. Test from stock FASTBOOT, tap/swipe while connected, and retain
+`kernel-live.log`. State 2 means READY; event lines establish kernel receipt,
+while FAILED/error or zero events require investigation at the controller side.
 
 ## Attribution
 

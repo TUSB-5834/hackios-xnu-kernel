@@ -1,0 +1,7 @@
+{
+  "source": "bsd/dev/dada_touch.c",
+  "baseline_sha256": "3a87be68a10d516e8ca0913c5fcfefbdd6b1b3fc9ea9d166616a5da2219f4921",
+  "reason": "r5 inherited dada_touch=4 but baseline driver only supports modes 1 through 3; mode 3 uses the r16h UEFI event ring",
+  "package_mode": 3,
+  "hardware_tested": false
+}

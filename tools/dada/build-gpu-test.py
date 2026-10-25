@@ -3,8 +3,9 @@
 
 The baseline archive contains all existing XNU objects, including the device's
 CPU/GIC/touch adaptations. GPU objects and the real pthread library are built
-in isolation; an optional GIC workaround replaces one extra object. No baseline
-files are modified. Firmware stays in local output and is never added to Git.
+in isolation; optional GIC, input-entry and touch-log patches replace only their
+respective objects. No baseline files are modified. Firmware stays in local
+output and is never added to Git.
 """
 import argparse
 import hashlib
@@ -22,30 +23,30 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
-def compile_input_gpu_hook(repo, xnu, obj, env):
-    info = json.loads((repo / 'tools/dada/patches/dada-input-baseline.json').read_text())
+def compile_bsd_patch(repo, xnu, obj, env, name, baseline, patch):
+    info = json.loads((repo / 'tools/dada/patches' / baseline).read_text())
     source = xnu / info['source']
     if sha(source) != info['baseline_sha256']:
-        raise RuntimeError('Input source differs from the diagnosed baseline; review before applying hook')
-    copied = obj / 'input-source' / info['source']
+        raise RuntimeError(f'{name} source differs from the diagnosed baseline; review before applying patch')
+    copied = obj / (name + '-source') / info['source']
     copied.parent.mkdir(parents=True)
     shutil.copyfile(source, copied)
     subprocess.run(['patch', '--batch', '--fuzz=0', '-p1', '-i',
-                    str(repo / 'tools/dada/patches/dada-input-gpu-hook.patch')],
-                   cwd=obj / 'input-source', check=True)
-    # Use this exact BSD object's rule; keep its existing dada touch integration.
+                    str(repo / 'tools/dada/patches' / patch)],
+                   cwd=obj / (name + '-source'), check=True)
+    # Use this exact BSD object's existing rule and device configuration.
     cwd = xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
     common = [f'SRCROOT={xnu}', f'OBJROOT={xnu}/BUILD/obj', f'SYMROOT={xnu}/BUILD/sym',
               f'DSTROOT={xnu}/BUILD/dst', 'SDKROOT=iphoneos', 'ARCH_CONFIGS=ARM64',
               'MACHINE_CONFIGS=BCM2837', 'KERNEL_CONFIGS=DEVELOPMENT', 'CC=xnu-clang',
               'CXX=xnu-clang++', 'CURRENT_MACHINE_CONFIG=BCM2837',
               'CURRENT_MACHINE_CONFIG_LC=bcm2837', 'ARCH_STRING_FOR_CURRENT_MACHINE_CONFIG=arm64']
-    dry = subprocess.run(['make', '-n', '-B', 'redwood_input.o', *common], cwd=cwd,
+    dry = subprocess.run(['make', '-n', '-B', name + '.o', *common], cwd=cwd,
                          env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
     lines = [line for line in dry.stdout.splitlines()
-             if 'xnu-clang' in line and ' -c ' in line and '/redwood_input.c' in line]
+             if 'xnu-clang' in line and ' -c ' in line and '/' + name + '.c' in line]
     if not lines:
-        raise RuntimeError('No input compiler command: ' + dry.stdout[-4000:])
+        raise RuntimeError('No BSD compiler command: ' + dry.stdout[-4000:])
     base, clean, i = shlex.split(lines[-1]), [], 0
     while i < len(base):
         flag = base[i]
@@ -56,16 +57,35 @@ def compile_input_gpu_hook(repo, xnu, obj, env):
             clean.append(flag)
         i += 1
     cmd = clean[:1] + ['-DXNU_TARGET_DADA=1', '-DBCM2837', '-DARM64_BOARD_CONFIG_BCM2837=1'] + clean[1:]
-    cmd += [f'-I{xnu}/bsd', str(copied), '-o', str(obj / 'redwood_input.o')]
-    (obj / 'redwood_input.command').write_text(shlex.join(cmd) + '\n')
+    cmd += [f'-I{xnu}/bsd', str(copied), '-o', str(obj / (name + '.o'))]
+    (obj / (name + '.command')).write_text(shlex.join(cmd) + '\n')
     result = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT, text=True)
-    (obj / 'redwood_input.log').write_text(result.stdout)
+    (obj / (name + '.log')).write_text(result.stdout)
     if result.returncode:
         raise RuntimeError(result.stdout[-8000:])
-    return {'gpu_call_before_dada_return': True,
-            'baseline_source_sha256': info['baseline_sha256'],
+    return {'baseline_source_sha256': info['baseline_sha256'],
             'source_tree_unchanged': sha(source) == info['baseline_sha256']}
+
+
+def compile_input_gpu_hook(repo, xnu, obj, env):
+    report = compile_bsd_patch(repo, xnu, obj, env, 'redwood_input',
+                               'dada-input-baseline.json', 'dada-input-gpu-hook.patch')
+    report['gpu_call_before_dada_return'] = True
+    return report
+
+
+def compile_touch_live_log(repo, xnu, obj, env):
+    # Verify the producer and consumer declarations match before using mode 3.
+    loader_header = repo / 'xnuloader/dada/include/sys/dada_touch_shared.h'
+    kernel_header = xnu / 'bsd/sys/dada_touch_shared.h'
+    if loader_header.read_text() != kernel_header.read_text():
+        raise RuntimeError('UEFI and XNU touch event bridge headers differ')
+    report = compile_bsd_patch(repo, xnu, obj, env, 'dada_touch',
+                               'dada-touch-baseline.json', 'dada-touch-live-log.patch')
+    report.update({'shared_abi_headers_match': True, 'package_mode': 3,
+                   'live_log_enabled': True, 'hardware_tested': False})
+    return report
 
 
 def compile_gic_without_snapshot(repo, xnu, obj, env):
@@ -172,6 +192,8 @@ def main():
                     help='apply the diagnosed r2 GIC workaround to an isolated baseline source copy')
     ap.add_argument('--dada-input-gpu-hook', action='store_true',
                     help='call the GPU diagnostic before the local baseline dada input early return')
+    ap.add_argument('--dada-touch-live-log', action='store_true',
+                    help='mirror touch bridge state/events from an isolated baseline source copy')
     a = ap.parse_args()
     repo = Path(__file__).resolve().parents[2]
     out = a.out.resolve()
@@ -210,6 +232,7 @@ def main():
     subprocess.run(cmd,cwd=cwd,env=env,check=True)
     gic = compile_gic_without_snapshot(repo, a.xnu, obj, env) if a.gic_no_firmware_snapshot else None
     input_hook = compile_input_gpu_hook(repo, a.xnu, obj, env) if a.dada_input_gpu_hook else None
+    touch_bridge = compile_touch_live_log(repo, a.xnu, obj, env) if a.dada_touch_live_log else None
     baseline = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837'
     original = baseline / 'mach.development.bcm2837.link'
     archive = out / 'kernel-objects.a'
@@ -220,6 +243,8 @@ def main():
         replacements.append(obj / 'gic_v3_irq.o')
     if input_hook:
         replacements.append(obj / 'redwood_input.o')
+    if touch_bridge:
+        replacements.append(obj / 'dada_touch.o')
     subprocess.run(['llvm-ar','r',str(archive),*map(str,replacements)],check=True)
     flags=shlex.split((original/'mach.development.bcm2837.linkarguments').read_text())
     # Exported linkarguments include a kernel-cache packaging transformation.
@@ -254,6 +279,12 @@ def main():
         (out / 'input-init.disassembly.txt').write_text(disassembly)
         if '<_redwood_adreno_init>' not in disassembly:
             raise RuntimeError('Linked dada input init does not call the GPU entry')
+    if touch_bridge:
+        disassembly = subprocess.check_output(['llvm-objdump', '-d', '--no-show-raw-insn',
+                                               '--disassemble-symbols=_touch_note', str(kernel)], text=True)
+        (out / 'touch-note.disassembly.txt').write_text(disassembly)
+        if '<_redwood_tl>' not in disassembly or '_firmware_worker' not in symbols:
+            raise RuntimeError('Linked touch live log or UEFI event worker is absent')
     if any(line.split()[-2:-1]==['U'] for line in symbols.splitlines()):
         raise RuntimeError('Linked kernel contains undefined symbols')
     (out/'build.json').write_text(json.dumps({'method':'recompile GPU objects and relink full baseline XNU archive',
@@ -262,7 +293,7 @@ def main():
         'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
         'hardware_tested':False,'all_baseline_sources_recompiled':False,
         'layout_verification':layout, 'gic_workaround':gic, 'pthread':pthread_report,
-        'dada_input_gpu_hook':input_hook},indent=2)+'\n')
+        'dada_input_gpu_hook':input_hook, 'dada_touch_bridge':touch_bridge},indent=2)+'\n')
     print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
 
 
