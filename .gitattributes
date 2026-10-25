@@ -1,0 +1,5 @@
+# Preserve exact archived source/launcher bytes and provenance hashes on Windows.
+xnuloader/dada/** -text
+uefi/dada/** -text
+tools/dada/** -text
+docs/dada/** -text

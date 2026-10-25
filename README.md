@@ -233,3 +233,11 @@ From the phone's screen, one session (`GL=1 REST=1`, `gpu=1`):
 
 OOSEX GANG — [@oodze](https://t.me/oodze) (founder), [@netusd](https://t.me/netusd), [@wannqn](https://t.me/wannqn),
 [@hxfuxyyXD](https://t.me/hxfuxyyXD). News: [t.me/oosexgangdevs](https://t.me/oosexgangdevs).
+
+## Xiaomi 15 (dada) adaptation snapshot
+
+This fork also contains the available r16h dada loader and Mu-Silicium platform snapshot under
+`xnuloader/dada` and `uefi/dada`, plus the Windows release launcher under `tools/dada`.
+See [docs/dada/README.md](docs/dada/README.md) for the source provenance, local runtime files and validation.
+The supplied release archive did not include the dada XNU/userland source changes; this snapshot is not
+a complete `common/build.sh dada` target. Existing upstream redwood and QEMU paths are preserved.

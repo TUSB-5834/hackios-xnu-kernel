@@ -1,0 +1,41 @@
+{
+  "commit": "5bd9f465e2e6172f345985460bb1a55f472677d0",
+  "files": [
+    {
+      "path": "hw/drivers/bq27z561/src/bq27z561.c",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/hw/drivers/bq27z561/src/bq27z561.c",
+      "bytes": 38183,
+      "sha256": "00f571b64945a932ee3b69ee74d6c8d818def4e2085642ae4339c59270f15cfa"
+    },
+    {
+      "path": "hw/drivers/bq27z561/include/bq27z561/bq27z561.h",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/hw/drivers/bq27z561/include/bq27z561/bq27z561.h",
+      "bytes": 18434,
+      "sha256": "c0c036e5d1e0789e5364404c25e05af9a82b44452ccb5ffa49ec7e6316a3d9e5"
+    },
+    {
+      "path": "hw/drivers/bq27z561/pkg.yml",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/hw/drivers/bq27z561/pkg.yml",
+      "bytes": 1364,
+      "sha256": "6b25777f2c84ad355abc3d3660ad4c689c1c45975d1856588912f936ba9aa9e0"
+    },
+    {
+      "path": "hw/drivers/bq27z561/syscfg.yml",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/hw/drivers/bq27z561/syscfg.yml",
+      "bytes": 1986,
+      "sha256": "15bc0f82fdb319ffd12b081658e2f6af36fabccea485110e7458c083e271c368"
+    },
+    {
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/LICENSE",
+      "bytes": 29908,
+      "sha256": "8bdce5450f52adcc23aeab9bdef375825269b48e8f8fd877f3bdb6de25b844cc"
+    },
+    {
+      "path": "NOTICE",
+      "url": "https://raw.githubusercontent.com/apache/mynewt-core/5bd9f465e2e6172f345985460bb1a55f472677d0/NOTICE",
+      "bytes": 241,
+      "sha256": "2a9f0703e9cb0e9570ca01dcd1e3570fa050be3d48e43fd83aa0ec4bc4f021bf"
+    }
+  ]
+}

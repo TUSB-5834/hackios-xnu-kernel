@@ -1,0 +1,1689 @@
+{
+  "revision": "r16h-wallpaper-r1",
+  "source_archive": "iOS16.5-dada-dev1.0.zip",
+  "hackios_upstream": "https://github.com/oosexgang/hackios-xnu-kernel",
+  "upstream_base": "d82c64a3a31cd27a0a0afbf6e213e467e44b1b4c",
+  "mu_commit": "794a84469fa576489a9fe4877ae6505478c8b126",
+  "device_binaries_commit": "ce3d72176a463aa18f26a200ff05f21ec8f69d6e",
+  "mynewt_commit": "5bd9f465e2e6172f345985460bb1a55f472677d0",
+  "path_base": "repository root",
+  "files": [
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_battery_uefi.c",
+      "path": "xnuloader/dada/loader-r16h/dada_battery_uefi.c",
+      "sha256": "92bcb6de86b6af4478181ccc8e5792ed3dc5b3003437125b96beee2637f45a65",
+      "bytes": 10956
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_battery_uefi.h",
+      "path": "xnuloader/dada/loader-r16h/dada_battery_uefi.h",
+      "sha256": "4a847d071c1b69e68996810cfdf2420f5888b1bab7170d35a1582b75cf8341c5",
+      "bytes": 2167
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_gpu_loader.c",
+      "path": "xnuloader/dada/loader-r16h/dada_gpu_loader.c",
+      "sha256": "37b9ce88c334b65d5a735a416d7ff3f6268d92ec0831a8f7d1dd096e8ad07c84",
+      "bytes": 2404
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_gpu_loader.h",
+      "path": "xnuloader/dada/loader-r16h/dada_gpu_loader.h",
+      "sha256": "790710cb6418730ee3457b82369ae5cc4f2aba631489778f6f29d080529ff8d1",
+      "bytes": 266
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_gpu_protocol.h",
+      "path": "xnuloader/dada/loader-r16h/dada_gpu_protocol.h",
+      "sha256": "8de86d58192356a92002d1f6e5cd9f29ff3e664d7560310897b09e6bea7ed19e",
+      "bytes": 513
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_i2c_driver.h",
+      "path": "xnuloader/dada/loader-r16h/dada_i2c_driver.h",
+      "sha256": "35c06313aadbb9507e207745c5254f4a4823ab3d4e12547fc1788fb9e78305d0",
+      "bytes": 312374
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_memory_window.h",
+      "path": "xnuloader/dada/loader-r16h/dada_memory_window.h",
+      "sha256": "b17c19b0b3553648eb55a306be61c2ffb74ec6a670d3b18c957a2b2ed8c0c8c6",
+      "bytes": 1904
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_clock.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_clock.c",
+      "sha256": "560eb9f7dab195d8662b42f0c1caaed20e35ca1809377f8d868162f44e42fecf",
+      "bytes": 1745
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_clock.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_clock.h",
+      "sha256": "d256c478d638151e8076eb87c495b3ed979bc5a8410fbdb6f7124502870bdde7",
+      "bytes": 846
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_config.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_config.c",
+      "sha256": "c149d2dbe96447d1cd7eab143edd4734bea83284dbcb63134b3b19c626f621b4",
+      "bytes": 5086
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_config.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_config.h",
+      "sha256": "6ed217a64b1ef3251bfe70dc78c5844ce9a7248e502b0f19a1809fde2d2165dd",
+      "bytes": 382
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_dttrace.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_dttrace.c",
+      "sha256": "2023e7a5159b5a22b03d67987cb1a8949354d90aea7c56b07813b79561b3453e",
+      "bytes": 3316
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_dttrace.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_dttrace.h",
+      "sha256": "143121130a1abc74203c6c9b199ccf14ddd579fe68aa99018bb0c3a6dc674e79",
+      "bytes": 418
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_fwtrace.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_fwtrace.c",
+      "sha256": "9925fea49e65a017b00053a501b13db96dea54dd1ab77bcdb66925f4c9e82d0c",
+      "bytes": 2369
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_fwtrace.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_fwtrace.h",
+      "sha256": "35a1035fed3ae254b5ec9177aaba3630ff600cf1dabc57ce5ae800c0a3c8098c",
+      "bytes": 310
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_gpio.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_gpio.c",
+      "sha256": "e24f45196b84683125013e388087d6a1a10a500b675d1ae1c2e23398f1e4cdb6",
+      "bytes": 3957
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_gpio.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_gpio.h",
+      "sha256": "4972bdd1c9c4e8ce92396519747c9ed1a9e4153b0683a23458690afadf01a0ef",
+      "bytes": 1118
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_gpio_uefi.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_gpio_uefi.c",
+      "sha256": "a1737838045742fabb5dd83afd919d31e6d8f7e91b81bb0534bbbac75a6293a7",
+      "bytes": 10979
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_gpio_uefi.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_gpio_uefi.h",
+      "sha256": "9a09e6bc6da4aba6a6cf1daa5f951ef531dbd1af56361dfe0517a0b4835d1477",
+      "bytes": 394
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_tcm.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_tcm.c",
+      "sha256": "16292eac675feb908a21d7b7c9f064f01da07f7f15e6806490174c5d15ac45dd",
+      "bytes": 5897
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_uefi.c",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_uefi.c",
+      "sha256": "725f8de8a3bb0b33af2868a700bc735a9f6b0a015b81acdd639ef89ed64821e5",
+      "bytes": 14850
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/dada_touch_uefi.h",
+      "path": "xnuloader/dada/loader-r16h/dada_touch_uefi.h",
+      "sha256": "7ee6fe64d54d7f6fdd4f5e34ac2c35a7e4a0d48569541c6c7f41f7fb3b3344e4",
+      "bytes": 751
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/efi.h",
+      "path": "xnuloader/dada/loader-r16h/efi.h",
+      "sha256": "915eb86422d8f7a8231d05884b78f46240003a840bb4e91e2574e97b5028a404",
+      "bytes": 12698
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/identity.h",
+      "path": "xnuloader/dada/loader-r16h/identity.h",
+      "sha256": "41d05bd8afe2edf00179a067d9be91b938e68899e3eb3c2467c22bb65507d010",
+      "bytes": 8271
+    },
+    {
+      "archive_path": "uefi/source/loader-r16h/loader.c",
+      "path": "xnuloader/dada/loader-r16h/loader.c",
+      "sha256": "12dbe0771a35db71c9a33863bade208fd5a03c01b2043a98302cc5d5690908c3",
+      "bytes": 190521
+    },
+    {
+      "archive_path": "uefi/source/include/sys/dada_gpu.h",
+      "path": "xnuloader/dada/include/sys/dada_gpu.h",
+      "sha256": "aa26264347f0052831581cc1e51ea01019541634797ae5e04cbb73c8eaa5b233",
+      "bytes": 1989
+    },
+    {
+      "archive_path": "uefi/source/include/sys/dada_gpu_firmware.h",
+      "path": "xnuloader/dada/include/sys/dada_gpu_firmware.h",
+      "sha256": "13d96efba0b0c683d6702369324d0d7436d65e516c07cd757398d62a71f59965",
+      "bytes": 478109
+    },
+    {
+      "archive_path": "uefi/source/include/sys/dada_gpu_shared.h",
+      "path": "xnuloader/dada/include/sys/dada_gpu_shared.h",
+      "sha256": "69b5b9290b451c86a1ac8873d163a2d786bdb38bef75e3a8ffd9a69eac1dbfa2",
+      "bytes": 2056
+    },
+    {
+      "archive_path": "uefi/source/include/sys/dada_touch.h",
+      "path": "xnuloader/dada/include/sys/dada_touch.h",
+      "sha256": "b729389bb5f6b102c219ac45dc92087926f2a3982a18ecc1235a34fb74fadb9f",
+      "bytes": 2058
+    },
+    {
+      "archive_path": "uefi/source/include/sys/dada_touch_shared.h",
+      "path": "xnuloader/dada/include/sys/dada_touch_shared.h",
+      "sha256": "65f41120bfb9a771033e1fb4717a666f37d020edc803024941c8365abfde9e4a",
+      "bytes": 1017
+    },
+    {
+      "archive_path": "uefi/source/gpu-query/dada_gpu_fw.c",
+      "path": "xnuloader/dada/gpu-query/dada_gpu_fw.c",
+      "sha256": "40a22a5d85303c7827b529892f04c9a93009f9b53110405631e09ba2963564c3",
+      "bytes": 3125
+    },
+    {
+      "archive_path": "uefi/source/gpu-query/dada_gpu_protocol.h",
+      "path": "xnuloader/dada/gpu-query/dada_gpu_protocol.h",
+      "sha256": "8de86d58192356a92002d1f6e5cd9f29ff3e664d7560310897b09e6bea7ed19e",
+      "bytes": 513
+    },
+    {
+      "archive_path": "uefi/source/gpu-query/dada_gpu_service.c",
+      "path": "xnuloader/dada/gpu-query/dada_gpu_service.c",
+      "sha256": "bf00be76b5ce97807582e3966e6d5d4eaedaf0458a14c7517eb0c30c79a731ac",
+      "bytes": 2491
+    },
+    {
+      "archive_path": "uefi/source/gpu-query/dada_gpu_service.h",
+      "path": "xnuloader/dada/gpu-query/dada_gpu_service.h",
+      "sha256": "8a7760f5c6fe464b53c1e0c0ae037c8abb252a3c01fb6d3f0325dc7eea11e741",
+      "bytes": 399
+    },
+    {
+      "archive_path": "uefi/source/gpu-query/DadaGpuDxe.c",
+      "path": "xnuloader/dada/gpu-query/DadaGpuDxe.c",
+      "sha256": "ad9ad59fa0d97c6a553ee7cadd36515109e1e8bc7fd57e614bd39df6b7b5c99b",
+      "bytes": 3674
+    },
+    {
+      "archive_path": "uefi/source/third-party/mynewt/LICENSE",
+      "path": "xnuloader/dada/third-party/mynewt/LICENSE",
+      "sha256": "8bdce5450f52adcc23aeab9bdef375825269b48e8f8fd877f3bdb6de25b844cc",
+      "bytes": 29908
+    },
+    {
+      "archive_path": "uefi/source/third-party/mynewt/NOTICE",
+      "path": "xnuloader/dada/third-party/mynewt/NOTICE",
+      "sha256": "2a9f0703e9cb0e9570ca01dcd1e3570fa050be3d48e43fd83aa0ec4bc4f021bf",
+      "bytes": 241
+    },
+    {
+      "archive_path": "uefi/source/third-party/mynewt/source-manifest.json",
+      "path": "xnuloader/dada/third-party/mynewt/source-manifest.json",
+      "sha256": "8d1100cc505c2203d9701c6c745155f7388835a83ed5b3e1a5d64f659a7b10c2",
+      "bytes": 1897
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/.gitmodules",
+      "path": "uefi/dada/files/.gitmodules",
+      "sha256": "2341cbb413bdbfe9e291ca0ba9ddee63fa520663c775cd13ec47469a825c8330",
+      "bytes": 840
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/BootShim/BootShim.S",
+      "path": "uefi/dada/files/BootShim/BootShim.S",
+      "sha256": "0f412999b77f8daa884d0a26b3875306b1387c9e40cd599caadb060c252075a4",
+      "bytes": 779
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/BootShim/Makefile",
+      "path": "uefi/dada/files/BootShim/Makefile",
+      "sha256": "d37dba407edd88f7596d909ed6f30d3bba60e3c318c47143815e2eb085f89a32",
+      "bytes": 411
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/build_uefi.py",
+      "path": "uefi/dada/files/build_uefi.py",
+      "sha256": "36715b49e0c981e98fc36466849b731c875f2ebcd8ecbd118bda5841748fe56f",
+      "bytes": 17354
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Building.md",
+      "path": "uefi/dada/files/Building.md",
+      "sha256": "d4fe545c18f490c85524d57275b85228d14b9f112c6cc3f17036579dce30c43f",
+      "bytes": 3718
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/LICENSE",
+      "path": "uefi/dada/files/LICENSE",
+      "sha256": "2b031880c646006165194888f9814806719ab4c91c26d330c4eb71e1983f0187",
+      "bytes": 1884
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/pip-requirements.txt",
+      "path": "uefi/dada/files/pip-requirements.txt",
+      "sha256": "2aff85508a32c03d6e09dba6433e5e0940dad8944974971f6ec4f8d3f1a0ff65",
+      "bytes": 586
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/AcpiTables.inf",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/AcpiTables.inf",
+      "sha256": "8e599bfc2f35ab93dc6a16a6c5859758ea5cd01eb79a6389eece8864b6c7ef40",
+      "bytes": 348
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/APIC.aml",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/APIC.aml",
+      "sha256": "f6211d0d2bdb15fb835535605ca175da53434a2e57838823ee235395172475ab",
+      "bytes": 708
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/DSDT.aml",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/DSDT.aml",
+      "sha256": "6ecefeb6a5da059b046860c89415c7ec1c107dc942394a9169d711b90321cdcc",
+      "bytes": 353
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/DSDT.asl",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/DSDT.asl",
+      "sha256": "f57fd1d1a70484800f3c1c866c0efefb1c502d2b3ad527fe7866330db7cc665d",
+      "bytes": 1575
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/FACP.aml",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/FACP.aml",
+      "sha256": "5574c2075adef907a811540fb8ce8e8c5a0efbcfb23b00990fd85e444040c47b",
+      "bytes": 276
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/gen_acpi.py",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/gen_acpi.py",
+      "sha256": "9d817e8583eb35a88683f4947a1550dd0b177c8fcbc0d8c26cd756221b25213d",
+      "bytes": 5655
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/GTDT.aml",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/GTDT.aml",
+      "sha256": "b6ca81c9ea436577bf98cbeee319e4283d65b9120e1eb46d9038aafcbcf065bd",
+      "bytes": 156
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/PPTT.aml",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/PPTT.aml",
+      "sha256": "f2da872c4704a3ac8d8a11f949a46c38f6198de9d6a0093b780f59ce275930f0",
+      "bytes": 216
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/AcpiTables/test_gen_acpi.py",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/AcpiTables/test_gen_acpi.py",
+      "sha256": "9a4bfdb1091c3f1e19d3dbed1c676033b0c4343fdc509417390d95ccfb2dfc0b",
+      "bytes": 6299
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/dada.dec",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/dada.dec",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/dada.dsc",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/dada.dsc",
+      "sha256": "830d0f013f4d5ef03dc8528432e20f4c32bda12fad300549dbac335f2152b703",
+      "bytes": 2418
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/dada.fdf",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/dada.fdf",
+      "sha256": "debc86cf95d4d55a0aedb928c8ea2a61c7a91ee750a6ed50f793b12cd788e3b2",
+      "bytes": 4530
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/DeviceBuild.py",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/DeviceBuild.py",
+      "sha256": "d84ab13165dba4410392f03e10e7d64cbe5f29d124cd167590ae3408078f1743",
+      "bytes": 8061
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/PmicKeysDxe.c",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/PmicKeysDxe.c",
+      "sha256": "4b31ff857ca7b83493ab2a0518d3c49e47e9f3283ca1080b00931701db92f13e",
+      "bytes": 21788
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/PmicKeysDxe.inf",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/PmicKeysDxe.inf",
+      "sha256": "00d931737449d1f02e6f9767fe2090ab57d774618583ae3e96cd3c4c4211197f",
+      "bytes": 1150
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/SpmiArb.c",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/SpmiArb.c",
+      "sha256": "df67f9c1cc5ee56d76b8a8f80d68445bf2b527e9e08ba0a7f9caf9d9dbe2e888",
+      "bytes": 7766
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/SpmiArb.h",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Drivers/PmicKeysDxe/SpmiArb.h",
+      "sha256": "8879fab583486c786dab08a195c8de297a24526f230eb9fd673dfa56c9579e06",
+      "bytes": 2438
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/FdtBlob/sm8750-xiaomi-dada.dtb",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/FdtBlob/sm8750-xiaomi-dada.dtb",
+      "sha256": "b4b7d763c8c5a329b13c5fc399f8273ada7d302ebcc5a3a2b36c8f792710a700",
+      "bytes": 966281
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Include/APRIORI.inc",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Include/APRIORI.inc",
+      "sha256": "de6098a14e528a4f1691eefa4703e4c0a0f9239574607aaa3c4a3f08a4e01d53",
+      "bytes": 5199
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Include/DXE.inc",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Include/DXE.inc",
+      "sha256": "1b08db2ef601a265252a0f54433e41a9390933bfa86837b420cebb26c4b20ca4",
+      "bytes": 5223
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Include/RAW.inc",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Include/RAW.inc",
+      "sha256": "be09305fe35b5621f7f77782d6c1c1a010553314bd0d9986f53666022f868629",
+      "bytes": 293
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Library/ConfigurationMapLib/ConfigurationMapLib.c",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Library/ConfigurationMapLib/ConfigurationMapLib.c",
+      "sha256": "5943bc3d475116a6e97d8c6b8ea4222f380945c523b8bcfdbfdf912791681710",
+      "bytes": 1854
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Library/ConfigurationMapLib/ConfigurationMapLib.inf",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Library/ConfigurationMapLib/ConfigurationMapLib.inf",
+      "sha256": "36a95ba44be8cf6e00a6c48d990c8b543c7feada9b3fa6e721d42404eebd331b",
+      "bytes": 406
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Library/MemoryMapLib/MemoryMapLib.c",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Library/MemoryMapLib/MemoryMapLib.c",
+      "sha256": "7516ffe8c689a127ff8cfdb8f1ce31d3df17d327a218c394f9a2df34f245a8bb",
+      "bytes": 4502
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Platforms/Xiaomi/dadaPkg/Library/MemoryMapLib/MemoryMapLib.inf",
+      "path": "uefi/dada/files/Platforms/Xiaomi/dadaPkg/Library/MemoryMapLib/MemoryMapLib.inf",
+      "sha256": "00b96734f5feb1773b65a4cb0aa1d8bfd5bce466c51f1ec9844e65ba6b4dba34",
+      "bytes": 413
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Resources/Configs/dada.toml",
+      "path": "uefi/dada/files/Resources/Configs/dada.toml",
+      "sha256": "f96c6e166eceea767ff0c7c2a9105b647f1f540364f70894a97eef26de752035",
+      "bytes": 314
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/AArch64/PlatformHelper.S",
+      "path": "uefi/dada/files/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/AArch64/PlatformHelper.S",
+      "sha256": "a550e2262b9426ae46e2e1da5225ec57d1a1740c0ed79845c06c5f4ed6137db8",
+      "bytes": 212
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/PlatformSec.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/PlatformSec.c",
+      "sha256": "ac5db94c5265f904739ca7c29a3e82b25fb4c4525361f38bc122bec48be66063",
+      "bytes": 378
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/PlatformSecLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/PakalaPkg/Library/PlatformSecLib/PlatformSecLib.inf",
+      "sha256": "cc1e93cac2388d1c448e1c19021ddcfe9ab0f2377b27f5e398470b8f736420d2",
+      "bytes": 637
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/PakalaPkg/PakalaPkg.dsc.inc",
+      "path": "uefi/dada/files/Silicon/Qualcomm/PakalaPkg/PakalaPkg.dsc.inc",
+      "sha256": "4aae76162e8402e8537ff75b47d2fa3bc60de48da2efd06de345fe89bbe3e8d8",
+      "bytes": 2022
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.c",
+      "sha256": "634f38342e84e691bd13a6f5599fadca6f06ceb8d56a1c81a1357d8146a4bff7",
+      "bytes": 5902
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.h",
+      "sha256": "9401ccbf51096bb2539126cf7f3a1fde65ddceb464e44b0fb74a5ea65758807b",
+      "bytes": 685
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Applications/MassStorage/MassStorage.inf",
+      "sha256": "1672d1f417e43eca3a28e0b62fb8323b624ad6c4034b8d529eb47f47d383b626",
+      "bytes": 913
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Drivers/DisplayReEnablerDxe/DisplayReEnablerDxe.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Drivers/DisplayReEnablerDxe/DisplayReEnablerDxe.c",
+      "sha256": "7a74b4ec6fffa5d9546d57772f6cbaf4fb0103c0557c07851c39e6f90739baab",
+      "bytes": 1192
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Drivers/DisplayReEnablerDxe/DisplayReEnablerDxe.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Drivers/DisplayReEnablerDxe/DisplayReEnablerDxe.inf",
+      "sha256": "c046d6140ad4467af090ea362fde5917c24fbbcae32c6443339f8ecc2002a8e7",
+      "bytes": 551
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Drivers/IortDtDxe/IortDtDxe.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Drivers/IortDtDxe/IortDtDxe.c",
+      "sha256": "4c13abda05fec54d933fe53f8800181546f69b684811d3b15821d531ec07d236",
+      "bytes": 2001
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Drivers/IortDtDxe/IortDtDxe.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Drivers/IortDtDxe/IortDtDxe.inf",
+      "sha256": "27e4fb8a3d5d42357dcf5d2bf99b1ff8a025617c590bea3a88cef6e6b11ae1d6",
+      "bytes": 537
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Extra.fdf.inc",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Extra.fdf.inc",
+      "sha256": "4e624a0bf106361a99f90e658ff78a07a9875f3a0357b47559e1ed183b8eb89f",
+      "bytes": 91
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Library/ArmSmmuDetachLib.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Library/ArmSmmuDetachLib.h",
+      "sha256": "0c7cad99681e8adc6dd77ac2592d2c019fb70b9c1459eaed9d919524924afb3b",
+      "bytes": 409
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Library/ConfigurationMapHelperLib.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Library/ConfigurationMapHelperLib.h",
+      "sha256": "ff836706760633411ff01d595d4dd33baa5f3a4f80c67b8b8a343c6a31938c69",
+      "bytes": 1367
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Library/ConfigurationMapLib.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Library/ConfigurationMapLib.h",
+      "sha256": "36c259fe1c8326c5ba7bc522b7b73a9709b62d1ac37cb102b0d33e0d90d3142c",
+      "bytes": 730
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Library/RfsProtectionLib.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Library/RfsProtectionLib.h",
+      "sha256": "badf9ece8bf9e0522efd7dffb2b15708fa244f7e3370c78f9a6f7505de0df503",
+      "bytes": 136
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/DDRDetails.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/DDRDetails.h",
+      "sha256": "d77ca9f05571e8c21ff3ed6d316ab9a809a847e2bd8d6bbeec4950c69ef65140",
+      "bytes": 4831
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIASN1X509.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIASN1X509.h",
+      "sha256": "9bc21fd48ba6953c4a46570c5fbbed3bf10ddcf334b763cdc6ab8f461beb1ec5",
+      "bytes": 6186
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFICardInfo.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFICardInfo.h",
+      "sha256": "10c61dff206f9e56ac9a6e22344b29b16c1f311a6ecea880e5be46ab0cf059cc",
+      "bytes": 6680
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChargerEx.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChargerEx.h",
+      "sha256": "4f6154a81852aa08a41425b46252fa36ee83f4349bfac61f88ca4303dd2b539b",
+      "bytes": 7430
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChipInfo.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChipInfo.h",
+      "sha256": "67101cbc45701d3db8e35cf8381d7b1c683f45512b5d46de3558823c2b59ea09",
+      "bytes": 28638
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChipInfoTypes.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIChipInfoTypes.h",
+      "sha256": "13684e04a677fcdefdd752fe6158dcca8ff713615dd887e789b861f3a972b5a9",
+      "bytes": 9594
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIClock.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIClock.h",
+      "sha256": "4a215bb2111a0ffca8cca53651ee08178b2ea7333b16bd3325bec9a898cb8cee",
+      "bytes": 38358
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDDRGetConfig.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDDRGetConfig.h",
+      "sha256": "eb58f474d933f9934aede76421a7ae9c1190765e63af8b35d5837b987bf2357f",
+      "bytes": 13539
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDisplayPwr.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDisplayPwr.h",
+      "sha256": "22a942c9a536dd765e09255ebfe0da72f744290b023c7709e90311d56c355635",
+      "bytes": 5786
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDisplayUtils.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIDisplayUtils.h",
+      "sha256": "8066dd2e753ac568f55025aec19b2e8c0ab24a015ec447c9569b4dee31870662",
+      "bytes": 11878
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIEraseBlock.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIEraseBlock.h",
+      "sha256": "2822d9968e5c1d1a7f3e9825d81c14d509202421acff6f1c31f0fec37a8459f0",
+      "bytes": 4984
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIKernelInterface.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIKernelInterface.h",
+      "sha256": "e499b097f6ae4163860fa60a3fb3cdce8ab2862679c8e72096c8acce3eab887f",
+      "bytes": 22779
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFILimits.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFILimits.h",
+      "sha256": "970a7764bf480277975a0a8b6ffaeb878598f3c29bd2c2a7c0bc631a41f7fab5",
+      "bytes": 5830
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIListenerDef.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIListenerDef.h",
+      "sha256": "622a1a720acb010e502c84f73f2ba25c0ab36b747d130f2c989180fe64ce19ee",
+      "bytes": 700
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIMdtp.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIMdtp.h",
+      "sha256": "6c665bba0f472b45ac55d93fd5696c6abb41ecb730f0124e22fb297f46ad1f7a",
+      "bytes": 5576
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFINandPartiGuid.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFINandPartiGuid.h",
+      "sha256": "85bcd508cddaa987ccc7a98f3dc09d6805127f40fda273df60a24bab5a2854c5",
+      "bytes": 4424
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPlatformInfo.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPlatformInfo.h",
+      "sha256": "e0ac5d0ee2209b61b526662b7a6de4cde0e9e1a2149f25af6965bd56ff7c4ecb",
+      "bytes": 8005
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPlatformInfoTypes.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPlatformInfoTypes.h",
+      "sha256": "e55d6d4e2d79ed0822a3372906897fcccf7790ee130823ab4919a6d62bc8c9eb",
+      "bytes": 7490
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPmicPon.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPmicPon.h",
+      "sha256": "9775abee75d98ccf0007874550c96632adddacde86db695e7ff45e366b18adc2",
+      "bytes": 6488
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPmicVersion.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIPmicVersion.h",
+      "sha256": "c49ae56e89e3390f56e0ccbed3a361ab1ba82e0e4fc4268c650493a77abda2fe",
+      "bytes": 10390
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIQseecom.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIQseecom.h",
+      "sha256": "f3c8776054b7ae61e8beaef55f7c3af56e959216927057d83ebd4c174c0b08e2",
+      "bytes": 5875
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIRamPartition.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIRamPartition.h",
+      "sha256": "b2a65a39131c51f8867335fc8131a4a3c4ed6dcae96e808108bc670f6cfb3dae",
+      "bytes": 8123
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIResetReason.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIResetReason.h",
+      "sha256": "92169cb3b89010702fe33efb8dfad46b69c5203501769f3bc2c0b29dfe3a96cf",
+      "bytes": 6299
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIRng.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIRng.h",
+      "sha256": "3d9a1d411d9acfd678f8aecd864d4d4bc565b08208fab13965cf2af6d3d39320",
+      "bytes": 6098
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIScm.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIScm.h",
+      "sha256": "aff2ad4a55e9837b7a9b487f586ecd210c1b4980abf029c7dbc908e58f853f40",
+      "bytes": 14496
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIScmModeSwitch.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIScmModeSwitch.h",
+      "sha256": "e812792c031e8ec57a2596ea727f0248463958bf46ed1b0aa2c3343019ab5b6d",
+      "bytes": 3815
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFISecRSA.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFISecRSA.h",
+      "sha256": "8c0f0c271be081b1594f2ab1cb619818cc35197143d2e804c759ed9559b40240",
+      "bytes": 9174
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFISmem.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFISmem.h",
+      "sha256": "15566c69f35988753c705fbad2ed2e097217c06ea703acd674077a464ce5d361",
+      "bytes": 789
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUbiFlasher.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUbiFlasher.h",
+      "sha256": "0e29f3772da07932afdd8220bf2a0835d4e694a6e1410fb1d55f6596749d2ac8",
+      "bytes": 8799
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbDevice.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbDevice.h",
+      "sha256": "3dbe2ad2fad2ac4e76882c4870fb9a7e3a7a54309e0fbac089ec6c3cc3d3b146",
+      "bytes": 14512
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbEx.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbEx.h",
+      "sha256": "071be72c72cc500325127f49b1ef771158458d5ac3c5129b6d575d6c19a31969",
+      "bytes": 6686
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbfnIo.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbfnIo.h",
+      "sha256": "648c009a83fb419d4a6b5e3b815d0d9277541f6040baa960d6f3b0ede21ce5aa",
+      "bytes": 40609
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbMsd.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIUsbMsd.h",
+      "sha256": "43d71c16950f86611fe5349ec26902e96ccf306836709189438b54898df3c90e",
+      "bytes": 3393
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIVerifiedBoot.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/EFIVerifiedBoot.h",
+      "sha256": "29bd56595b53e339d41d7fc362efd88aac8fba0049817bce135fdc91aa9c8a95",
+      "bytes": 10265
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/scm_sip_interface.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/scm_sip_interface.h",
+      "sha256": "b44e28ccce1d757a8fb33243ce18205bd6154866bd644befa905044570de7506",
+      "bytes": 190764
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/Source.txt",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/Source.txt",
+      "sha256": "d95c1bf815e6fece4e45beeecb36d1328281d4ebd429172c7d91b87847efa836",
+      "bytes": 100
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Include/Protocol/UsbEx.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Include/Protocol/UsbEx.h",
+      "sha256": "f067c57efeabefb9d3bc5d7e1933fd536648c6e969f734435260af1e48e63e4d",
+      "bytes": 6066
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLib.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLib.c",
+      "sha256": "430e6b079f6702e0a66f1f080b371af9efc941ba939ce168bacac6b3c07a16cf",
+      "bytes": 5916
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLib.inf",
+      "sha256": "d3179c3f9dcc9b6e40e0c8df541f5584dcb59a48cd5d1e504a48a5ad5909795b",
+      "bytes": 542
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLibInternal.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/ArmSmmuDetachLibInternal.h",
+      "sha256": "06c652ae183770312641e62477241ce69ab846460c63ee2453f06efa0ab4ec2f",
+      "bytes": 2043
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/SmmuIo.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/SmmuIo.c",
+      "sha256": "a3fb9c73013a3e02a9ec1187b4af350a70f55c24bb0d62115f5b5243c97fd5f9",
+      "bytes": 1987
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/SmmuV2.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ArmSmmuDetachLib/SmmuV2.h",
+      "sha256": "404b525d79413044777b5a8b4b82a826bc061d040d259022d25548f06926e167",
+      "bytes": 2946
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.c",
+      "sha256": "2b3a5c3f858bcf1a261f705f7ea0eec76383c246c3dd4c65d960a22e6c424d62",
+      "bytes": 1678
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ConfigurationMapHelperLib/ConfigurationMapHelperLib.inf",
+      "sha256": "d935272516006f3d9676a4aa6a88fa3b68d80dc1e8ad1bca1b62d810ca96e131",
+      "bytes": 484
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ErrataPatchesLib.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ErrataPatchesLib.c",
+      "sha256": "93abd8ce8412034885ed2295b2833dbd7c7eee12781d6848faa6cb6c4afbe37a",
+      "bytes": 1618
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ErrataPatchesLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ErrataPatchesLib.inf",
+      "sha256": "f37b61299f4cd5a7408effd13c10fc1d835e242774131d119317801d1611b9bd",
+      "bytes": 473
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/ACTLR_EL1/ShellCode.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/ACTLR_EL1/ShellCode.c",
+      "sha256": "9b9868cb076c17d773803a4d77c5a42e2ce23517b5a9c19469a463a53e6d7560",
+      "bytes": 8668
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/AMCNTENSET0_EL0/ShellCode.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/AMCNTENSET0_EL0/ShellCode.c",
+      "sha256": "3dee6caacac89bfa9b942387f827c1c4e9062bdc29afc5ed7f1e8d7bfd2572af",
+      "bytes": 8518
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/IRM/ShellCode.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/IRM/ShellCode.c",
+      "sha256": "457f0c1b92bc9b49258a72a332b052b2442124a620227b13436808c308c0ed8f",
+      "bytes": 7428
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/IRM_X8/ShellCode.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/IRM_X8/ShellCode.c",
+      "sha256": "4b52b807ef7797b35ec078adc53f1da96f44f37e754ac7c681eab1f4d039ad0c",
+      "bytes": 7240
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/PSCI_MEMPROTECT/ShellCode.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/Reference/PSCI_MEMPROTECT/ShellCode.c",
+      "sha256": "6d50aa0324ae337717897f75a7340cc25ddfd26f7260586b7cc8d09d579acae3",
+      "bytes": 9232
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ShellCode.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/ErrataPatchesLib/ShellCode.h",
+      "sha256": "165752581639a365f3bfcbf1dca730caca7fae13a2fc7f30d0f0a5562a9165af",
+      "bytes": 8890
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformBootManagerLib/PlatformBootManager.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformBootManagerLib/PlatformBootManager.c",
+      "sha256": "985c4e8196bb6aa509308a18cf7712243d4933f7126d64aec962a15fce7cd328",
+      "bytes": 1986
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf",
+      "sha256": "db4165f8495cd4cf0c27040bcca2bf2e11bbf08da1fa2caf14aa0dddb1fe8925",
+      "bytes": 637
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformBootOptionsLib/PlatformBootOptions.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformBootOptionsLib/PlatformBootOptions.c",
+      "sha256": "b56fdd27d64ddc4118fd29fce53f70f88c613c69242e28c00fd2306d6be50fe3",
+      "bytes": 1005
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformBootOptionsLib/PlatformBootOptionsLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformBootOptionsLib/PlatformBootOptionsLib.inf",
+      "sha256": "c22726ed245ca0381d95916e829938d0dec8554b310d176be227fe9cd63409c1",
+      "bytes": 575
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/Include/FvList.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/Include/FvList.h",
+      "sha256": "0f88f0fa0fe3ca8038d774a9d3ce55dda3f01fef99628d9a4223cd0f25a49423",
+      "bytes": 333
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPei.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPei.c",
+      "sha256": "6e13139a9e2812a896178ee059fb1e5e70970a5baf40ee5339079be8e5a95525",
+      "bytes": 3845
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPei.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPei.h",
+      "sha256": "d0bbc0165d4d721c2f7d5508bbf75ce6151eb2109105bdb1e75b035e57bad7d0",
+      "bytes": 665
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPeiLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/PlatformPeiLib.inf",
+      "sha256": "998c90ecbeca27683bad9673b0863b5d13ca324d473c139765345ec3cbf382ff",
+      "bytes": 1123
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/SerialPort.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/SerialPort.c",
+      "sha256": "cdf39d007d192107e9d70e3c2824db0a2e14a5d0dc8e5dab48129b85d5c8de5d",
+      "bytes": 190
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFISerialPort.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFISerialPort.h",
+      "sha256": "53986b1296ae2c6065f16cb8ef3444ee338aae51149803f4b18e34d51bf8cf2a",
+      "bytes": 2976
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFIShim.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFIShim.h",
+      "sha256": "e552d65b677ff0674a8249ce3b1051a8eeec1ada755927da251cb8984239abbc",
+      "bytes": 1559
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFIUefiConfig.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLibraries/EFIUefiConfig.h",
+      "sha256": "a97069d8ac300ec7a80f04e0bf341178f1fb1cc255bd11a133c49083a6c468e0",
+      "bytes": 3729
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLoader.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/ShimLoader.c",
+      "sha256": "5378fa6d0273b332e5e6e178c1b9c5793283e5b1f67cf13ce4e2628c0144c209",
+      "bytes": 1684
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/UefiConfig.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/UefiConfig.c",
+      "sha256": "fb19a33a2a0427b04da52a8a85dc0dc6d4de12b6a7fa885f3764d64f34cc2cd9",
+      "bytes": 730
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/XblProtocols.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/PlatformPeiLib/XblProtocols.c",
+      "sha256": "c79d3cef46c60466751f7e79e3b26837fb2a292738dfa58bcaa9fb9084db67fe",
+      "bytes": 4028
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/RamManagerLib/RamManager.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/RamManagerLib/RamManager.c",
+      "sha256": "a857d76eb2e34dd0b7ebace3dd01bc63d3ccaaf4a3e3feb7d903a13fd3cce12f",
+      "bytes": 2416
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/RamManagerLib/RamManagerLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/RamManagerLib/RamManagerLib.inf",
+      "sha256": "15144b9a138b55919c19826bacef0f8c303154085a51d381f0f0e7b642a6e361",
+      "bytes": 606
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/RfsProtectionLib/RfsProtection.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/RfsProtectionLib/RfsProtection.c",
+      "sha256": "6ee7e63a049a983f3d5390b3f489e6ee419cb574f4d8d5d6c933dc47b016a0fc",
+      "bytes": 4684
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/RfsProtectionLib/RfsProtectionLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/RfsProtectionLib/RfsProtectionLib.inf",
+      "sha256": "52ca66ad4228fd92f6bc28b45ec8b3d0da2951c49150a228ce25b28833c8541c",
+      "bytes": 727
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTable.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTable.c",
+      "sha256": "b725a86a5c01639c6f78ef0afa2e641e18462ca510f4b9023a90f61399dcf3e4",
+      "bytes": 4263
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTable.h",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTable.h",
+      "sha256": "df097949c7806b6b1a1a46cba7898f733d9d98b2d8c90fbf2c2ef06511a924c3",
+      "bytes": 822
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTableLib.inf",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/SmBiosTableLib.inf",
+      "sha256": "890e2f1eade895418c0f7adfeec8dedc3c1b3dc74a757f5c027a88301f7e3219",
+      "bytes": 882
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/Utils.c",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/Library/SmBiosTableLib/Utils.c",
+      "sha256": "2a9b9d3fcf2a20d6396a3621bedffbbe4eecaf6316b40f2a931c554ea60663ff",
+      "bytes": 5684
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/QcomPkg.dec",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/QcomPkg.dec",
+      "sha256": "6f117c5e5120e16e3f63b574f50e468daeb0c71d9f4c47dd19eff9222ee9b362",
+      "bytes": 10432
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Qualcomm/QcomPkg/QcomPkg.dsc.inc",
+      "path": "uefi/dada/files/Silicon/Qualcomm/QcomPkg/QcomPkg.dsc.inc",
+      "sha256": "5f68deef53401b7b51b7a69d40f779a7bc514789e75f31a31abb9ad2fa110bb8",
+      "bytes": 1872
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/AcpiTableUpdateLibNull/AcpiTableUpdateLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/AcpiTableUpdateLibNull/AcpiTableUpdateLibNull.inf",
+      "sha256": "768bcf50cad865755d61d144b7818c6a06ef5248e2225904300be0ca9336ae0d",
+      "bytes": 466
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/AcpiTableUpdateLibNull/AcpiTableUpdateNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/AcpiTableUpdateLibNull/AcpiTableUpdateNull.c",
+      "sha256": "d99d901927ac5bcd0d36baf3beca08e7ae2e7db52c0d56dcb2b1449b1ec5d8bb",
+      "bytes": 120
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/ErrataPatchesLibNull/ErrataPatchesLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/ErrataPatchesLibNull/ErrataPatchesLibNull.inf",
+      "sha256": "da329ce51f85d7e002034bb9a25e95a7960c9457ba88a4fa0a9c998a9dd8abe4",
+      "bytes": 427
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/ErrataPatchesLibNull/ErrataPatchesNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/ErrataPatchesLibNull/ErrataPatchesNull.c",
+      "sha256": "9bd991ffbcd034645a48c3ed3c79e15b72fd594fe94de75323a87151da6e8c0a",
+      "bytes": 430
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootManagerLibNull/PlatformBootManagerLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootManagerLibNull/PlatformBootManagerLibNull.inf",
+      "sha256": "a7f2d0ca9770f9dec6ac387da0e13849ad2b101b18c5008ee6ec93f8e2be1cc3",
+      "bytes": 486
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootManagerLibNull/PlatformBootManagerNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootManagerLibNull/PlatformBootManagerNull.c",
+      "sha256": "546682ee778c1fee37311c55eac6059c7ffbc85b3c41982e9647760266fbf9d7",
+      "bytes": 799
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootOptionsLibNull/PlatformBootOptionsLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootOptionsLibNull/PlatformBootOptionsLibNull.inf",
+      "sha256": "43448854d35d72c79462569f0186a0f984498fe66106b5415dca4803aba0a1b6",
+      "bytes": 445
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootOptionsLibNull/PlatformBootOptionsNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformBootOptionsLibNull/PlatformBootOptionsNull.c",
+      "sha256": "f069bb1a7a6d6dd15769697a290c4c2a6e031804fe701f9a7ce468c06cfa4330",
+      "bytes": 246
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformPeiLibNull/PlatformPeiLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformPeiLibNull/PlatformPeiLibNull.inf",
+      "sha256": "c1082107f8782ffd8a2648fde80937473398c159d3239675f5e7a3ac6e05959a",
+      "bytes": 689
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformPeiLibNull/PlatformPeiNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformPeiLibNull/PlatformPeiNull.c",
+      "sha256": "6058b5604c7a0f3c16b7f0dae98fdb1d4cb0d467af60404c2c81ec18ed911496",
+      "bytes": 379
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/AArch64/PlatformHelperNull.S",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/AArch64/PlatformHelperNull.S",
+      "sha256": "f9a04adc736ce7d968f114e5248d358e2b3e137d83d4a37bc2abdbb9922bf208",
+      "bytes": 187
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/PlatformSecLibNull.inf",
+      "sha256": "d2d414e5883679deb2fd93d2f16205bd56fc4c1cee75d0a0e392f6ab0b246256",
+      "bytes": 590
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/PlatformSecNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/PlatformSecLibNull/PlatformSecNull.c",
+      "sha256": "0ac703ac4c7bf725307c18e72db484eda7323011d857092ebbf0dfb408b40a0d",
+      "bytes": 195
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/RamManagerLibNull/RamManagerLibNull.inf",
+      "sha256": "f1180c62eb88db85c9e7affb5f1a7f7a428325757f2e36387a9ddd609b644b25",
+      "bytes": 418
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/RamManagerLibNull/RamManagerNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/RamManagerLibNull/RamManagerNull.c",
+      "sha256": "6abb6522265d0817085184d176c1e3085b4080e6be33311922c06303bced4c72",
+      "bytes": 170
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/RealTimeClockLibNull/RealTimeClockLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/RealTimeClockLibNull/RealTimeClockLibNull.inf",
+      "sha256": "df8c3f4bbcba374cda02a76dbefbfd37d3c84acfe2fc03f246100734e4d53d2f",
+      "bytes": 1064
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/RealTimeClockLibNull/RealTimeClockNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/RealTimeClockLibNull/RealTimeClockNull.c",
+      "sha256": "947659106988d172acded7c37776396fe9cccb5ce2a6caad26a4dd79037ba43a",
+      "bytes": 2499
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/SmBiosTableLibNull/SmBiosTableLibNull.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/SmBiosTableLibNull/SmBiosTableLibNull.inf",
+      "sha256": "6b2ba9dad7faad689a50ff9c9b2676f1e78ba07c92e4854686a6956f09fc9d6a",
+      "bytes": 435
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumNullPkg/Library/SmBiosTableLibNull/SmBiosTableNull.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumNullPkg/Library/SmBiosTableLibNull/SmBiosTableNull.c",
+      "sha256": "aa59609c35af3800c4753f5190f45b0b348d3e3161651ae0941599b8bd5c4487",
+      "bytes": 220
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFP/LICENSE.md",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFP/LICENSE.md",
+      "sha256": "1eca344a982282a0bcc20c09dbddd5c3d3a2fdc7fa33f138d26436ca4bcf855a",
+      "bytes": 15703
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFP/ufpdevicefw.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFP/ufpdevicefw.inf",
+      "sha256": "24e8a29179fd40f48dbf0c02b28dede757cd2c2fe1fd25bc8411dc0010bb337c",
+      "bytes": 355
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.c",
+      "sha256": "48bf7fbc48e6a33e56c56f960b70e19fe3950a1dff6e930dba870c45ddaa3b9a",
+      "bytes": 2249
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.h",
+      "sha256": "322d909c4a72571c52c7c48fabac179e7f2b15bae3f89de52f3efba95e0be5f9",
+      "bytes": 169
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPLoader.inf",
+      "sha256": "f0794f34bb5e65da21d1279efba685a1bc53738db68319c67dbb0bc90874395f",
+      "bytes": 681
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPPatch.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFPLoader/UFPPatch.c",
+      "sha256": "eb9a9ebea683d426024f0cd076c3f94e202fefc94bcc2cd734713b40bc1232e4",
+      "bytes": 1289
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Common.fdf.inc",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Common.fdf.inc",
+      "sha256": "20a0aeb14304c5fc6678985ea413701d9288fe3971dc43dadcc9d03c6feac2a7",
+      "bytes": 2706
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDeviceDxe/KeypadDeviceDxe.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDeviceDxe/KeypadDeviceDxe.c",
+      "sha256": "b7e46cb550c9ada02ec43a549216703feca393b809015d2dec8282fc8196032a",
+      "bytes": 760
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDeviceDxe/KeypadDeviceDxe.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDeviceDxe/KeypadDeviceDxe.inf",
+      "sha256": "754adb3e3583ed82b073f1d4d6244e6890b43a076a6a29affe631b3463b5c68a",
+      "bytes": 605
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/ComponentName.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/ComponentName.c",
+      "sha256": "0d35c85fcb90531c0b1fdd11c486d217c60afe77809c70192442034b0261d2ad",
+      "bytes": 15044
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadController.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadController.c",
+      "sha256": "104d0a32499147c265f87814ce5d8a3b28b545297bf683c343af5b7dc95ae788",
+      "bytes": 3384
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.c",
+      "sha256": "31de2030b0240ca63f3f099adf94615f9d633a2310305dbe3edc8601cba0b346",
+      "bytes": 15854
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.h",
+      "sha256": "e8d1f909559cc35d0fc29f2a2bc113582011f364740b44a250d7d12062fb6700",
+      "bytes": 11368
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadDxe.inf",
+      "sha256": "ffcf7373f8ba1531004a4383cf487cd7ca16f2a4ee7ae0bb123bfae867272526",
+      "bytes": 1420
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadTextIn.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/KeypadTextIn.c",
+      "sha256": "528615c988aae206a5f1fc87e3b7a06cf2623c0197c405f4cc8ae0de0f732d27",
+      "bytes": 20405
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/Source.txt",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/KeypadDxe/Source.txt",
+      "sha256": "84a7415f1d65b651025e5669965d5a634c20ad92806bc5bb4d2889461283b997",
+      "bytes": 118
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/RamManagerDxe/RamManager.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/RamManagerDxe/RamManager.c",
+      "sha256": "f21045e2ca73208d3dc55a1bcadae71bcf55cd2c60baafd68d6664a51398e527",
+      "bytes": 6902
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/RamManagerDxe/RamManagerDxe.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/RamManagerDxe/RamManagerDxe.inf",
+      "sha256": "bc93a87755b5e6ca200f7500bbbfe9ad7954cbfeb6472b6b6f1782d4c3944495",
+      "bytes": 597
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SimpleFbDxe/SimpleFb.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SimpleFbDxe/SimpleFb.c",
+      "sha256": "926136fbf45aef45fda9a18c797e21cc361c2dbe34003176eadf9e98034a05d6",
+      "bytes": 9025
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SimpleFbDxe/SimpleFbDxe.inf",
+      "sha256": "46a6ebe23cd5e4c9ec15dedb18a4e5a34d0fb5560143b0b2924dbb9b8ff0ff53",
+      "bytes": 876
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTable.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTable.c",
+      "sha256": "85fe0234beaf71509579108385b9d436cc43dc47d6b146dfe59122f7c5558bfd",
+      "bytes": 16103
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTable.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTable.h",
+      "sha256": "af2cbc354bdd5a00283d43e74700ea875f57aeb4f34398606273c691052d7f34",
+      "bytes": 3360
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTableDxe.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/SmBiosTableDxe.inf",
+      "sha256": "429368efb35474e76470f3a218c355b1458dede453c6e5c2d60c938409b91020",
+      "bytes": 1358
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/TableDefinitions.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/TableDefinitions.h",
+      "sha256": "abc24cf6f1a588f6d0977feb7bf6bcda72fb8509c1daeabf99d80135ba5e9f73",
+      "bytes": 11447
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/Utils.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Drivers/SmBiosTableDxe/Utils.c",
+      "sha256": "b566dce741d43a4d476a3c88784f6f6f0f9d56759ab18a755b897ec54d4db05f",
+      "bytes": 3814
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Extra.fdf.inc",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Extra.fdf.inc",
+      "sha256": "b055cd798824fd9596d4faf0ae20e997e9b14ce47f4b0647be0db33f971cd58c",
+      "bytes": 1192
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Configuration/BootDevices.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Configuration/BootDevices.h",
+      "sha256": "0a4d268f2f8cac02dd247fd2c54bacf14cb766b1b5c9cd953a9fc115b4ecf931",
+      "bytes": 1805
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/AcpiTableUpdateLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/AcpiTableUpdateLib.h",
+      "sha256": "cbd88f52d47257dfbc01bef70b77d7eca5063c7d1b33bf5f1caeae379b3322a6",
+      "bytes": 184
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/AslUpdateLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/AslUpdateLib.h",
+      "sha256": "36e27136063dc8f80ca41dd051301e2a712dfd628c32ef7545b1693707810f68",
+      "bytes": 4021
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/AssemblyUtilsLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/AssemblyUtilsLib.h",
+      "sha256": "ce227d9a8f3e9641154180241237546f3ef187bba238d577eb3724dc0691f7a4",
+      "bytes": 716
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/AtomicLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/AtomicLib.h",
+      "sha256": "9321485a6b046762b47ebdca47b1ac49ec0227bc9f29a1ad78b5096fd44f7061",
+      "bytes": 1973
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/BitmapLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/BitmapLib.h",
+      "sha256": "f08147b7a85d1b128c70687397873c3ac0303ce673add591f0f3bf501af3e25f",
+      "bytes": 2537
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/BootGraphics.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/BootGraphics.h",
+      "sha256": "a2e0d5a3fba77c2591df89bd9bd3cc87de42c2ff7915381041ec10c2090d4cd8",
+      "bytes": 253
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/EfiMemoryMapUtilsLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/EfiMemoryMapUtilsLib.h",
+      "sha256": "9b6f4e6c9d6ac71b06cad5a5340d3683313e66cc5a17b13476a0cab230e40332",
+      "bytes": 396
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/ErrataPatchesLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/ErrataPatchesLib.h",
+      "sha256": "ea1b3809fba077ea500cfb69365b395d45f465d3cdde0288a514f16e582bb2cc",
+      "bytes": 719
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/KeypadDeviceLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/KeypadDeviceLib.h",
+      "sha256": "3349434be4272634bf758eea66e3d88f74a6fb8f33712646521d6c1172977140",
+      "bytes": 599
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryAllocationHelperLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryAllocationHelperLib.h",
+      "sha256": "29f03a733a4df4b707a879e70dea70adb1a8dfac405df369dc9c9032df6813ed",
+      "bytes": 715
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryMapHelperLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryMapHelperLib.h",
+      "sha256": "c2cd75e8a7a67cfcb883bdc3902e300cf77b8d4a51a7b9ed79955188fcc7e98f",
+      "bytes": 1450
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryMapLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/MemoryMapLib.h",
+      "sha256": "c60c4b80e81388d40148cc014a25f22a20a89a1722c6dd0f1e784efa3268816b",
+      "bytes": 4364
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/PlatformBootOptionsLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/PlatformBootOptionsLib.h",
+      "sha256": "4a2ea84899c3303846f9895729bb97df1e805fe9eb4c778bd51f53ff6134bf40",
+      "bytes": 626
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/PlatformSecLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/PlatformSecLib.h",
+      "sha256": "9194ca076ee21bb70302246503253adf38ff4a5b75cdb66cf734053a0b0f3394",
+      "bytes": 401
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/RamManagerLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/RamManagerLib.h",
+      "sha256": "8e89787c6a8ea7823131ab44bd38fe0493041ab470adb9cb318c6862fb0f5b1e",
+      "bytes": 552
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/SecureBootHandlerLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/SecureBootHandlerLib.h",
+      "sha256": "48ca6e6c509657310dd3b22febea9d12a42c415fc25139712cbeaf69eb8f4655",
+      "bytes": 280
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Library/SmBiosTableLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Library/SmBiosTableLib.h",
+      "sha256": "9a6cd89ff04d41525c23a1dbc8c2741a07d65a67041169bceaef524e24dc482f",
+      "bytes": 2114
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Protocol/EfiKeypadDevice.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Protocol/EfiKeypadDevice.h",
+      "sha256": "76744dfc383a4fa133e8147fb9db21f4aa2734222a77f8a3aeda53c91473270c",
+      "bytes": 1290
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Resources/BootLogo.bmp",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Resources/BootLogo.bmp",
+      "sha256": "daf81fcaaae58853f9fa0e8a5fdaec7f44b1ba1d7596ebb7f329ceaa84afd6b8",
+      "bytes": 91078
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Resources/MassStorage.bmp",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Resources/MassStorage.bmp",
+      "sha256": "d8db6a75dd779e7a8ef610341bd08b54b9df1c1e91c5fd94e63f504f4ba52564",
+      "bytes": 251078
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Resources/NoBootOS.bmp",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Resources/NoBootOS.bmp",
+      "sha256": "d602b490756db178117647f4032e6556694e9eff1b0db8044c87d225feba5ed7",
+      "bytes": 91078
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Resources/SecureBoot/README.md",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Resources/SecureBoot/README.md",
+      "sha256": "4dba8cf540fc0ffa2291e2be48d1387e1624d40c6a926175f906534a31e6da94",
+      "bytes": 414
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Include/Resources/SecureBoot/SiPolicy.p7b",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Include/Resources/SecureBoot/SiPolicy.p7b",
+      "sha256": "531477810e7c3a9f1e4d5e6d171508ce1caa88bd5aab0131abd8f1b92dd81a23",
+      "bytes": 8633
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/AslUpdateLib/AslUpdateLib.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/AslUpdateLib/AslUpdateLib.c",
+      "sha256": "537707fa76d175dbd91019a710e9d0c06a3f422c2e59769de91f22a12e0b0a28",
+      "bytes": 8344
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/AslUpdateLib/AslUpdateLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/AslUpdateLib/AslUpdateLib.inf",
+      "sha256": "2f6163b10fa8eee318fd332a8739b3931d087efdd01dc8fe2ddfb408f4d7e910",
+      "bytes": 754
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProvider.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProvider.c",
+      "sha256": "40299539fbf459072b5d2f5303a7617301f044b7b1c58911e880b96d2b6d063a",
+      "bytes": 798
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProvider.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProvider.h",
+      "sha256": "5a8f63472861b139f750cc7ae0f137400f3e5976f20413addcdcb81ec0fd2815",
+      "bytes": 581
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootGraphicsProviderLib/BootGraphicsProviderLib.inf",
+      "sha256": "a014c59bb1d185cdd7dc7439c6f2e1eb91dfeb2c87cd8d3de69c7300fdf4211d",
+      "bytes": 901
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManager.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManager.c",
+      "sha256": "eb4d965e685bff18d0be0da392c232d2a675f3cd08ff55c3742ef59fdbffffbb",
+      "bytes": 6629
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManager.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManager.h",
+      "sha256": "318b460d38529210eae6dfba559eff17ceeb04e760493ac381f5a2598dbd988f",
+      "bytes": 245
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManagerLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/BootManagerLib.inf",
+      "sha256": "0229a8a8350b4513fcc4ca3d0ade15a0ad764afe8ed6e0df9f4d781d7aadf895",
+      "bytes": 1211
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/KeyCallback.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/BootManagerLib/KeyCallback.c",
+      "sha256": "d7ee112dfad85d10d8f8e8e6272de7de55c8b2961cac481fc245093234ddfd85",
+      "bytes": 3596
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/DxeRngLib/DxeRng.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/DxeRngLib/DxeRng.c",
+      "sha256": "90a00d28700716cf2e98eae8630fcc7214e7a56621dd3a90f26887be680d3ed9",
+      "bytes": 4513
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/DxeRngLib/DxeRngLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/DxeRngLib/DxeRngLib.inf",
+      "sha256": "3722e53a9d95441900af411c7561454165b810ea7b0060d84fe6f4ebb048cc0f",
+      "bytes": 700
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/Font.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/Font.h",
+      "sha256": "d2a3687db67b069f4e34a961e17fd28b0242986e3fa8dd8a7545cab70834fa8e",
+      "bytes": 3692
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBuffer.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBuffer.h",
+      "sha256": "92916a1eedb81dc86324ff66a8d87e63d188897fecbb068ae77f08506dd40fd8",
+      "bytes": 459
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.c",
+      "sha256": "85e7dba58a1022e042e72a56aff01a09d1fcf7360e5801ce73fa750e253ab7fe",
+      "bytes": 7007
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/FrameBufferSerialPortLib/FrameBufferSerialPortLib.inf",
+      "sha256": "1f396141743fe7169823670ca333e6ef2c6747cc6ad3cb767260cfea83152722",
+      "bytes": 749
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.c",
+      "sha256": "d493a1a32877220dd5d8832b7579e5ee4b330988b2826acd6c33b284c68ad841",
+      "bytes": 5243
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.h",
+      "sha256": "542e4fec020fb0045982dcc0295094332db799850896bee4ee87898136400ad0",
+      "bytes": 686
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/KernelErrataPatcherLib.inf",
+      "sha256": "2573cad1b8a757778af18690d3e3d3b56a2c40f3967ca8f8b3b09ca1b443f26a",
+      "bytes": 916
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/MemoryAttribute.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/MemoryAttribute.c",
+      "sha256": "cef98e82440d6384ff18ab5e223c8308cee064f46c7f3994b626b1e8b98c82a2",
+      "bytes": 1445
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/Winload.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/Winload.c",
+      "sha256": "ced29f86a0022181c6eedcaa712fee972e575edb6f78208aa2faf734585d95d4",
+      "bytes": 6219
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/Winload.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/KernelErrataPatcherLib/Winload.h",
+      "sha256": "db37b2a946b20c090636ae90a0debf958454ac26654a03d617a953d49cc05e3d",
+      "bytes": 1273
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryAllocationHelperLib/MemoryAllocationHelper.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryAllocationHelperLib/MemoryAllocationHelper.c",
+      "sha256": "6abf106f78e17cef735176bc83f44eb3d2846a6ed60abd30871879a7f6cbaa46",
+      "bytes": 2964
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryAllocationHelperLib/MemoryAllocationHelperLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryAllocationHelperLib/MemoryAllocationHelperLib.inf",
+      "sha256": "24c781e903ae941d2863aa2358f060447bd1f90bbda432dccd8cc624ed091d5d",
+      "bytes": 546
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPei.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPei.c",
+      "sha256": "dced274a5e31484b647e643fa255439a9a6f6eb5fc210671233614ed80ef2edb",
+      "bytes": 4891
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPeiLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryInitPeiLib/MemoryInitPeiLib.inf",
+      "sha256": "e67e74e0633e74d2c04b27254e9fa240aaf317cc9dee88054d8b91418662ae82",
+      "bytes": 928
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryMapHelperLib/MemoryMapHelper.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryMapHelperLib/MemoryMapHelper.c",
+      "sha256": "ec9c5e0f7b9a23fabb8ad7316906742139e0c8f8e49fec74f91a7822b41d5c79",
+      "bytes": 1635
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MemoryMapHelperLib/MemoryMapHelperLib.inf",
+      "sha256": "c002bea97077e115317c72b7b6b70b4078d3becb5ac00b0bfe63eca5e6feea90",
+      "bytes": 461
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MsBootOptionsLib/MsBootOptionsLib.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MsBootOptionsLib/MsBootOptionsLib.c",
+      "sha256": "d9cb4f7503aae317442cdeeff4a92c357e1c8c858921ff613f9dfac30de989f9",
+      "bytes": 9420
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MsBootOptionsLib/MsBootOptionsLib.inf",
+      "sha256": "d5173d7fbfe96b875619ca7e7c5ac0db2b44b1ba3f7d66fd7653c10155ea3c7f",
+      "bytes": 1017
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MsBootPolicyLib/MsBootPolicy.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MsBootPolicyLib/MsBootPolicy.c",
+      "sha256": "788c633905726204bc4f317e63abd12683eeb85656166ac77c7b31a137807313",
+      "bytes": 1469
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/MsBootPolicyLib/MsBootPolicyLib.inf",
+      "sha256": "bbe08b26ea1111a2864b8510175fe91d4c933cf5771844d0062fa1194e5feba3",
+      "bytes": 572
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandler.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandler.c",
+      "sha256": "2faf588821fb8686577611a68000ab4dcc8ba1bc9d74ef84bb769dfc4a2b2b83",
+      "bytes": 9302
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandler.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandler.h",
+      "sha256": "36642a92a0fa05384dff8b75319aa2f7eee5ef96e917edd8b370bb254fa76e72",
+      "bytes": 265
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandlerLib.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Library/SecureBootHandlerLib/SecureBootHandlerLib.inf",
+      "sha256": "8ee999330c11490737cd42043f8a25b8fef178f2481d431ce9f1ff62eee452c5",
+      "bytes": 815
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/AArch64/ArchSec.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/AArch64/ArchSec.c",
+      "sha256": "900d8d655eeb7422b6ff8b055b7941d96d35fc6c520bf07e37613a474bb6d771",
+      "bytes": 1213
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/AArch64/Exception.S",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/AArch64/Exception.S",
+      "sha256": "6cbd46db3d3c5cab457d93271b4eba7c0bdff6be2a8b1d5c3d71f3b17584eed2",
+      "bytes": 5402
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/AArch64/Helper.S",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/AArch64/Helper.S",
+      "sha256": "275a611151a43d7776c965b613d1b0bb712d63ba81a8b6b616f26c4c42d13ac9",
+      "bytes": 950
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/AArch64/ModuleEntryPoint.S",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/AArch64/ModuleEntryPoint.S",
+      "sha256": "ac62466d82cb6f1cfe3a67d59de304a60e555fac142dc36c80dace94f53fc149",
+      "bytes": 1265
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/Sec.c",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/Sec.c",
+      "sha256": "77639c5a4ca526b199e9bcff2271625bac9952de8b3766d6a2ec03719c5da783",
+      "bytes": 4735
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/Sec.h",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/Sec.h",
+      "sha256": "614b0416843e46abd57e7c9ba72b8ea3a9ded4802e3e07d474c6ea2583a88784",
+      "bytes": 506
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Sec/Sec.inf",
+      "sha256": "a340343850e43c28ecca533a2623590ddef3513219848157353a02821458e9f3",
+      "bytes": 1575
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/SecureBoot-Keys.inc",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/SecureBoot-Keys.inc",
+      "sha256": "bef02dd42800fbc39c6b5ad99ca69546a7e6d9d6463fbf72c57f140afb5f3ec0",
+      "bytes": 56899
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/SiliciumPkg.dec",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/SiliciumPkg.dec",
+      "sha256": "780722e7141d6ac0244bf1e394d2b4d3fe20f6b0deb11571de491dce01082676",
+      "bytes": 2515
+    },
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/SiliciumPkg.dsc.inc",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/SiliciumPkg.dsc.inc",
+      "sha256": "82f76ccf6e6341caeda867ad42d2bd8a34bba00dbeb4282bdf5a5bbc2875c8b8",
+      "bytes": 20158
+    }
+  ],
+  "modified_build_entry": {
+    "path": "xnuloader/dada/Build-Loader.py",
+    "original_archive_path": "uefi/source/Build-Loader.py",
+    "change": "Default output moved into ignored dada/out/loader"
+  },
+  "local_ignored_source_artifacts": [
+    {
+      "archive_path": "uefi/source/Mu-Silicium-dada/Silicon/Silicium/SiliciumPkg/Applications/UFP/ufpdevicefw.efi",
+      "path": "uefi/dada/files/Silicon/Silicium/SiliciumPkg/Applications/UFP/ufpdevicefw.efi",
+      "sha256": "72de25543341ba515be3872749b5fe7501468019acb6d8d997ae4a5bb19493fa",
+      "bytes": 443904
+    }
+  ],
+  "xnu_source_changes_included": false,
+  "userland_source_changes_included": false
+}

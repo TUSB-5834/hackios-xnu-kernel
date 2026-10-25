@@ -1,0 +1,44 @@
+## @file
+#  SM8750 volume/power key driver for Mu-Silicium (Xiaomi 15 / dada).
+#
+#  Polls the PMIC over the SPMI PMIC Arbiter and publishes
+#  EFI_SIMPLE_TEXT_INPUT_PROTOCOL / EFI_SIMPLE_TEXT_INPUT_EX_PROTOCOL
+#  plus a vendor device path (EFI_KEYPAD_DEVICE_GUID):
+#    volume+ -> SCAN_UP, volume- -> SCAN_DOWN, power -> Enter,
+#    volume- held + power -> SCAN_ESC.
+#
+#  Ported from edk2-msm Silicon/Qualcomm/sm8750/Drivers/PmicKeysDxe.
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PmicKeysDxe
+  FILE_GUID                      = a7c4e2b1-5d36-4f8a-9e12-0c4b7a63d915
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PmicKeysDxeEntryPoint
+
+[Sources]
+  PmicKeysDxe.c
+  SpmiArb.c
+  SpmiArb.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  MemoryAllocationLib
+
+[Protocols]
+  gEfiSimpleTextInProtocolGuid      ## PRODUCES
+  gEfiSimpleTextInputExProtocolGuid ## PRODUCES
+  gEfiDevicePathProtocolGuid        ## PRODUCES
+
+[Depex]
+  TRUE

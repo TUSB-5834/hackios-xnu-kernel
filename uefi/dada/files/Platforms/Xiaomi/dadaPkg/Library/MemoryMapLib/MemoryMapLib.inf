@@ -1,0 +1,15 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = MemoryMapLib
+  FILE_GUID                      = 8B2F4E6A-1C3D-4A5B-9E7F-2D8C6B4A1E3F
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = MemoryMapLib
+
+[Sources]
+  MemoryMapLib.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdePkg/MdePkg.dec
+  SiliciumPkg/SiliciumPkg.dec

@@ -1,0 +1,69 @@
+{
+  "package": "hackios-dada-dev1.0",
+  "revision": "r16h-wallpaper-r1",
+  "ios": "16.5 (20F66)",
+  "device": "Xiaomi 15 / dada / SM8750",
+  "system": "firmware/dada-ios165-system-wallpaper-r16h-r1.apfs",
+  "boot": "firmware/dada-ios165-boot-wallpaper-r16h-r1.apfs",
+  "kernel": "firmware/mach.development.dada-battery",
+  "payload": "firmware/ios-live.xnup",
+  "uefi": "uefi/hackios-dada-v16-wallpaper-r16h-r1.img",
+  "files": [
+    {
+      "path": "firmware/dada-ios165-system-wallpaper-r16h-r1.apfs",
+      "bytes": 2507427840,
+      "sha256": "e70d85bf9b842e4e0fc012024a0c731729552fb277aa5ebae36d17a3f50899c2"
+    },
+    {
+      "path": "firmware/dada-ios165-boot-wallpaper-r16h-r1.apfs",
+      "bytes": 4194304,
+      "sha256": "4e4a394b254dce83d55680ffbccf41cc926f8b965fa9d369296934d12cb94d89"
+    },
+    {
+      "path": "firmware/mach.development.dada-battery",
+      "bytes": 15309064,
+      "sha256": "3b5e0500756f3bffed3f6be991a585c1086b61340ebfce8b8046493db519d292"
+    },
+    {
+      "path": "firmware/ios-live.xnup",
+      "bytes": 19503728,
+      "sha256": "de5bb1d13761c37692a00749072b99371925bf1ad5c49e7c8cc9e02ddfe1d508"
+    },
+    {
+      "path": "uefi/hackios-dada-v16-wallpaper-r16h-r1.img",
+      "bytes": 8581120,
+      "sha256": "979b73d94037fdaf27aaa533cf0193d508b4066cebed33e2811926e282ac789b"
+    },
+    {
+      "path": "tools/platform-tools/fastboot.exe",
+      "bytes": 2429080,
+      "sha256": "b2d9cbff4ce9ae7eb448cfc831bafc867935f50f5be38f8f81057fd7eb3b8d86"
+    },
+    {
+      "path": "tools/platform-tools/AdbWinApi.dll",
+      "bytes": 108184,
+      "sha256": "c1d653030b4bde65d3e07e4d0b0979e17be56df1436cdd15528630f27808050d"
+    },
+    {
+      "path": "tools/platform-tools/AdbWinUsbApi.dll",
+      "bytes": 73368,
+      "sha256": "0710e894d9b40f71a670c13c694079d564c92c1279da382cfe4850983aaebe1b"
+    },
+    {
+      "path": "tools/platform-tools/libwinpthread-1.dll",
+      "bytes": 243016,
+      "sha256": "f2044c755e39efc5d47f47c5a942178dd6d79dc8945bb182dc8753d10e2a4269"
+    },
+    {
+      "path": "tools/platform-tools/NOTICE.txt",
+      "bytes": 1154131,
+      "sha256": "38ec8c6f5b7799c223ffeab1f9e81c2d5fc67b5e56d6424f649630ca1ee1a811"
+    },
+    {
+      "path": "tools/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    }
+  ],
+  "cmdline": "cpus=1 bootcpu=1 loader_return_after=0 battery_panic_after=0 fbtrace=0 touch_lat=0 dada_touch=4 dada_touch_mmio=1 dada_buttons=1 dada_buttons_mmio=1 dada_touch_power=1 dada_touch_reset=1 battery=1"
+}

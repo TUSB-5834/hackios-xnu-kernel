@@ -1,0 +1,151 @@
+{
+  "scope": "Available dada release source and Windows runtime tooling",
+  "upstream_base": "d82c64a3a31cd27a0a0afbf6e213e467e44b1b4c",
+  "source_files_byte_verified": 277,
+  "python_sources_syntax_checked": 5,
+  "windows_powershell": "5.1.26100.9756",
+  "offline_launcher_cases": [
+    {
+      "name": "cold-start",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar product",
+        "boot <repository>\\tools\\dada\\uefi\\hackios-dada-v16-wallpaper-r16h-r1.img",
+        "devices -l",
+        "getvar version-bootloader",
+        "getvar platform",
+        "getvar run-control",
+        "getvar log-protocol",
+        "getvar auto-return",
+        "getvar battery-service",
+        "getvar runtime",
+        "oem battery-probe",
+        "getvar battery-status",
+        "getvar battery-soc",
+        "oem ramdisk none",
+        "oem ramdisk",
+        "stage <repository>\\tools\\dada\\firmware\\dada-ios165-system-wallpaper-r16h-r1.apfs",
+        "getvar xnu-memory-limit-mib",
+        "getvar xnu-memory-mib",
+        "stage <repository>\\tools\\dada\\firmware\\ios-live.xnup",
+        "oem persist",
+        "getvar runtime"
+      ]
+    },
+    {
+      "name": "already-running",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar version-bootloader",
+        "getvar platform",
+        "getvar run-control",
+        "getvar log-protocol",
+        "getvar auto-return",
+        "getvar battery-service",
+        "getvar runtime"
+      ]
+    },
+    {
+      "name": "no-device",
+      "passed": true,
+      "commands": [
+        "devices -l"
+      ]
+    },
+    {
+      "name": "wrong-product",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar product"
+      ]
+    },
+    {
+      "name": "wrong-loader",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar version-bootloader"
+      ]
+    },
+    {
+      "name": "battery-failed",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar product",
+        "boot <repository>\\tools\\dada\\uefi\\hackios-dada-v16-wallpaper-r16h-r1.img",
+        "devices -l",
+        "getvar version-bootloader",
+        "getvar platform",
+        "getvar run-control",
+        "getvar log-protocol",
+        "getvar auto-return",
+        "getvar battery-service",
+        "getvar runtime",
+        "oem battery-probe",
+        "getvar battery-status",
+        "getvar battery-soc"
+      ]
+    },
+    {
+      "name": "low-memory",
+      "passed": true,
+      "commands": [
+        "devices -l",
+        "devices -l",
+        "getvar product",
+        "boot <repository>\\tools\\dada\\uefi\\hackios-dada-v16-wallpaper-r16h-r1.img",
+        "devices -l",
+        "getvar version-bootloader",
+        "getvar platform",
+        "getvar run-control",
+        "getvar log-protocol",
+        "getvar auto-return",
+        "getvar battery-service",
+        "getvar runtime",
+        "oem battery-probe",
+        "getvar battery-status",
+        "getvar battery-soc",
+        "oem ramdisk none",
+        "oem ramdisk",
+        "stage <repository>\\tools\\dada\\firmware\\dada-ios165-system-wallpaper-r16h-r1.apfs",
+        "getvar xnu-memory-limit-mib",
+        "getvar xnu-memory-mib"
+      ]
+    },
+    {
+      "name": "verify-offline",
+      "passed": true,
+      "commands": []
+    },
+    {
+      "name": "partition-stop-and-reboot-commands-blocked",
+      "passed": true
+    }
+  ],
+  "actual_apfs_xnup_structure_checked": true,
+  "all_local_package_file_hashes_checked": true,
+  "absolute_and_traversal_package_paths_rejected": true,
+  "loader_rebuilt_during_import": false,
+  "full_fd_rebuilt_during_import": false,
+  "kernel_rebuilt_during_import": false,
+  "device_commands_sent": false,
+  "xnu_source_changes_available": false,
+  "userland_source_changes_available": false,
+  "git_index_audit": {
+    "staged_files": 298,
+    "all_imported_source_hashes_match_index": true,
+    "runtime_images_and_logs_excluded": true,
+    "new_files_below_github_size_limit": true,
+    "known_secret_patterns_absent": true
+  },
+  "source_whitespace": "Original snapshot whitespace and CRLF bytes preserved to retain provenance hashes; no formatting changes applied."
+}

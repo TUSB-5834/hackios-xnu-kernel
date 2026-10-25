@@ -80,3 +80,15 @@ __pycache__/
 !/xnu-deps/build/lzbitmap/libzbitmap.c
 !/xnu-deps/build/lzbitmap/libzbitmap.h
 /tools/android/f2fs-resize
+
+# Xiaomi 15 / dada source snapshot and local runtime bundle
+!/.gitattributes
+!/xnuloader/dada/
+/xnuloader/dada/out/
+/uefi/dada/files/**/*.efi
+/tools/dada/firmware/
+/tools/dada/uefi/
+/tools/dada/tools/platform-tools/
+/tools/dada/logs/
+/tools/dada/log-out/
+/tools/dada/validation/
