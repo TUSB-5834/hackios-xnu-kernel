@@ -90,6 +90,15 @@
     "gic_snapshot_disabled": true,
     "baseline_source_and_archive_unchanged": true,
     "launcher_cases_passed": 12,
+    "device_tested": true,
+    "gic_init_completed": true,
+    "device_boot_succeeded": false,
+    "device_failure": "pthread function table NULL in bsd_init; SDK pthread_start was a no-op stub"
+  },
+  "diagnostic_r4": {
+    "pthread_source_revision": "a6c70ca0e544347a0377babf748f831577ec24f9",
+    "pthread_registration_call_verified": true,
+    "launcher_cases_passed": 12,
     "device_tested": false
   }
 }

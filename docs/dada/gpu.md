@@ -127,6 +127,26 @@ disables firmware interrupt-state restoration when returning to the loader;
 manually reboot to Android after testing. New failures require a fresh retained
 log rather than assuming this change fixes the entire boot path.
 
+### Diagnostic r4 pthread correction
+
+The retained r3 device log confirms GIC initialization completed and the kernel
+reached `bsd_init`. It then panicked in `pthread_init` because the pthread function
+table was NULL, before GPU initialization. The local SDK `libpthread_kext.a`
+contained only a `pthread_start` stub returning success. Both the baseline and
+the diagnostic kernel linked that stub. Symbol presence alone did not establish
+a working pthread implementation.
+
+The diagnostic builder now requires `--pthread /path/to/libpthread`, pinned to
+Apple libpthread-514.100.2 (`a6c70ca0e544347a0377babf748f831577ec24f9`).
+`tools/dada/build-pthread-kext.py` builds its three `kern/` source files in the
+output directory with the same symbol renames as the project's existing build
+recipe. It checks the real function table and registration relocation. The final
+kernel links that isolated archive instead of the SDK stub and verifies that
+`pthread_start` calls `pthread_kext_register`. The SDK remains unchanged.
+
+r4 retains the GIC workaround. Compilation, linkage and package checks passed;
+successful boot and GPU initialization still need device evidence.
+
 ## Attribution
 
 Credit to `hxfuxyy/ios-macan` for the original Gen8 backend and Darwin Mesa

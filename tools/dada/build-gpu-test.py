@@ -2,11 +2,13 @@
 """Compile GPU objects and relink a configured dada kernel archive, in isolation.
 
 The baseline archive contains all existing XNU objects, including the device's
-CPU/GIC/touch adaptations. Only GPU objects are replaced. No baseline files are
-modified. Firmware remains in the local output and is never added to Git.
+CPU/GIC/touch adaptations. GPU objects and the real pthread library are built
+in isolation; an optional GIC workaround replaces one extra object. No baseline
+files are modified. Firmware stays in local output and is never added to Git.
 """
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -118,6 +120,7 @@ def main():
     ap.add_argument('--env', type=Path, required=True)
     ap.add_argument('--firmware', type=Path, required=True)
     ap.add_argument('--mesa', type=Path, required=True)
+    ap.add_argument('--pthread', type=Path, required=True, help='pinned Apple libpthread source; SDK stubs are not usable')
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--gic-no-firmware-snapshot', action='store_true',
                     help='apply the diagnosed r2 GIC workaround to an isolated baseline source copy')
@@ -149,6 +152,10 @@ def main():
     env_bytes = subprocess.check_output(['bash','-c','source "$1"; env -0','gpu-build',str(a.env)])
     env = dict(item.split('=',1) for item in env_bytes.decode().split('\0') if '=' in item)
     env['XNU_TARGET'] = 'dada'
+    spec = importlib.util.spec_from_file_location('pthread_build', repo / 'tools/dada/build-pthread-kext.py')
+    pthread_build = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(pthread_build)
+    pthread_library, pthread_report = pthread_build.build(repo, a.pthread, a.xnu, obj / 'pthread', env)
     cmd = shlex.split((obj / 'dada_adreno.command').read_text())
     cmd[1:1] = [f'-I{obj}', '-DDADA_GPU_EMBEDDED_FIRMWARE=1']
     cwd = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
@@ -170,7 +177,9 @@ def main():
     flags+=['-Wl,-alias_list,'+str(original/'mach.development.bcm2837.alias.exp'),
         '-Wl,-sectcreate,__LINKINFO,__symbolsets,'+str(baseline/'symbolsets.plist'),
         '-Wl,-segprot,__LINKINFO,r--,r--', '-Wl,-force_load,'+str(archive)]
-    flags+=shlex.split((original/'mach.development.bcm2837.linkarchives').read_text())
+    flags += [flag for flag in shlex.split((original/'mach.development.bcm2837.linkarchives').read_text())
+              if flag != '-lpthread_kext']
+    flags += ['-Wl,-force_load,' + str(pthread_library)]
     kernel=out/'mach.development.dada-gpu-diagnostic.unstripped'
     cmd=['xnu-clang',*flags,'-o',str(kernel)]
     (out/'link.command').write_text(shlex.join(cmd)+'\n')
@@ -183,6 +192,11 @@ def main():
     symbols=subprocess.check_output(['llvm-nm',str(kernel)],text=True)
     if '_dada_adreno_init' not in symbols or '_dada_gmu_plan_firmware' not in symbols:
         raise RuntimeError('New backend is absent from linked kernel')
+    disassembly = subprocess.check_output(['llvm-objdump', '-d', '--no-show-raw-insn',
+                                           '--disassemble-symbols=_pthread_start', str(kernel)], text=True)
+    (out / 'pthread-start.disassembly.txt').write_text(disassembly)
+    if '<_pthread_kext_register>' not in disassembly:
+        raise RuntimeError('Linked pthread_start does not call pthread_kext_register')
     if any(line.split()[-2:-1]==['U'] for line in symbols.splitlines()):
         raise RuntimeError('Linked kernel contains undefined symbols')
     (out/'build.json').write_text(json.dumps({'method':'recompile GPU objects and relink full baseline XNU archive',
@@ -190,7 +204,7 @@ def main():
         'kernel': {'path':final.name,'bytes':final.stat().st_size,'sha256':sha(final)},
         'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
         'hardware_tested':False,'all_baseline_sources_recompiled':False,
-        'layout_verification':layout, 'gic_workaround':gic},indent=2)+'\n')
+        'layout_verification':layout, 'gic_workaround':gic, 'pthread':pthread_report},indent=2)+'\n')
     print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
 
 
