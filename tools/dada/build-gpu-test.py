@@ -22,6 +22,52 @@ def sha(p):
     return hashlib.sha256(p.read_bytes()).hexdigest()
 
 
+def compile_input_gpu_hook(repo, xnu, obj, env):
+    info = json.loads((repo / 'tools/dada/patches/dada-input-baseline.json').read_text())
+    source = xnu / info['source']
+    if sha(source) != info['baseline_sha256']:
+        raise RuntimeError('Input source differs from the diagnosed baseline; review before applying hook')
+    copied = obj / 'input-source' / info['source']
+    copied.parent.mkdir(parents=True)
+    shutil.copyfile(source, copied)
+    subprocess.run(['patch', '--batch', '--fuzz=0', '-p1', '-i',
+                    str(repo / 'tools/dada/patches/dada-input-gpu-hook.patch')],
+                   cwd=obj / 'input-source', check=True)
+    # Use this exact BSD object's rule; keep its existing dada touch integration.
+    cwd = xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
+    common = [f'SRCROOT={xnu}', f'OBJROOT={xnu}/BUILD/obj', f'SYMROOT={xnu}/BUILD/sym',
+              f'DSTROOT={xnu}/BUILD/dst', 'SDKROOT=iphoneos', 'ARCH_CONFIGS=ARM64',
+              'MACHINE_CONFIGS=BCM2837', 'KERNEL_CONFIGS=DEVELOPMENT', 'CC=xnu-clang',
+              'CXX=xnu-clang++', 'CURRENT_MACHINE_CONFIG=BCM2837',
+              'CURRENT_MACHINE_CONFIG_LC=bcm2837', 'ARCH_STRING_FOR_CURRENT_MACHINE_CONFIG=arm64']
+    dry = subprocess.run(['make', '-n', '-B', 'redwood_input.o', *common], cwd=cwd,
+                         env=env, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, text=True)
+    lines = [line for line in dry.stdout.splitlines()
+             if 'xnu-clang' in line and ' -c ' in line and '/redwood_input.c' in line]
+    if not lines:
+        raise RuntimeError('No input compiler command: ' + dry.stdout[-4000:])
+    base, clean, i = shlex.split(lines[-1]), [], 0
+    while i < len(base):
+        flag = base[i]
+        if flag in ('-MF', '-MT', '-MQ', '-o'):
+            i += 2
+            continue
+        if flag not in ('-MD', '-MMD', '-MP') and not flag.endswith('.c'):
+            clean.append(flag)
+        i += 1
+    cmd = clean[:1] + ['-DXNU_TARGET_DADA=1', '-DBCM2837', '-DARM64_BOARD_CONFIG_BCM2837=1'] + clean[1:]
+    cmd += [f'-I{xnu}/bsd', str(copied), '-o', str(obj / 'redwood_input.o')]
+    (obj / 'redwood_input.command').write_text(shlex.join(cmd) + '\n')
+    result = subprocess.run(cmd, cwd=cwd, env=env, stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT, text=True)
+    (obj / 'redwood_input.log').write_text(result.stdout)
+    if result.returncode:
+        raise RuntimeError(result.stdout[-8000:])
+    return {'gpu_call_before_dada_return': True,
+            'baseline_source_sha256': info['baseline_sha256'],
+            'source_tree_unchanged': sha(source) == info['baseline_sha256']}
+
+
 def compile_gic_without_snapshot(repo, xnu, obj, env):
     """Patch/compile one copied baseline source; never edit the existing tree."""
     info = json.loads((repo / 'tools/dada/patches/dada-gic-baseline.json').read_text())
@@ -124,6 +170,8 @@ def main():
     ap.add_argument('--out', type=Path, required=True)
     ap.add_argument('--gic-no-firmware-snapshot', action='store_true',
                     help='apply the diagnosed r2 GIC workaround to an isolated baseline source copy')
+    ap.add_argument('--dada-input-gpu-hook', action='store_true',
+                    help='call the GPU diagnostic before the local baseline dada input early return')
     a = ap.parse_args()
     repo = Path(__file__).resolve().parents[2]
     out = a.out.resolve()
@@ -161,6 +209,7 @@ def main():
     cwd = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837/bsd/DEVELOPMENT'
     subprocess.run(cmd,cwd=cwd,env=env,check=True)
     gic = compile_gic_without_snapshot(repo, a.xnu, obj, env) if a.gic_no_firmware_snapshot else None
+    input_hook = compile_input_gpu_hook(repo, a.xnu, obj, env) if a.dada_input_gpu_hook else None
     baseline = a.xnu / 'BUILD/obj/DEVELOPMENT_ARM64_BCM2837'
     original = baseline / 'mach.development.bcm2837.link'
     archive = out / 'kernel-objects.a'
@@ -169,6 +218,8 @@ def main():
     replacements=[obj/name for name in ['redwood_adreno.o','RedwoodGPU.cpo','dada_adreno.o','dada_gpu_fw.o','dada_gpu_va.o']]
     if gic:
         replacements.append(obj / 'gic_v3_irq.o')
+    if input_hook:
+        replacements.append(obj / 'redwood_input.o')
     subprocess.run(['llvm-ar','r',str(archive),*map(str,replacements)],check=True)
     flags=shlex.split((original/'mach.development.bcm2837.linkarguments').read_text())
     # Exported linkarguments include a kernel-cache packaging transformation.
@@ -197,6 +248,12 @@ def main():
     (out / 'pthread-start.disassembly.txt').write_text(disassembly)
     if '<_pthread_kext_register>' not in disassembly:
         raise RuntimeError('Linked pthread_start does not call pthread_kext_register')
+    if input_hook:
+        disassembly = subprocess.check_output(['llvm-objdump', '-d', '--no-show-raw-insn',
+                                               '--disassemble-symbols=_redwood_input_init', str(kernel)], text=True)
+        (out / 'input-init.disassembly.txt').write_text(disassembly)
+        if '<_redwood_adreno_init>' not in disassembly:
+            raise RuntimeError('Linked dada input init does not call the GPU entry')
     if any(line.split()[-2:-1]==['U'] for line in symbols.splitlines()):
         raise RuntimeError('Linked kernel contains undefined symbols')
     (out/'build.json').write_text(json.dumps({'method':'recompile GPU objects and relink full baseline XNU archive',
@@ -204,7 +261,8 @@ def main():
         'kernel': {'path':final.name,'bytes':final.stat().st_size,'sha256':sha(final)},
         'embedded_firmware':rows,'zap_present':False,'gpu_backend_linked':True,
         'hardware_tested':False,'all_baseline_sources_recompiled':False,
-        'layout_verification':layout, 'gic_workaround':gic, 'pthread':pthread_report},indent=2)+'\n')
+        'layout_verification':layout, 'gic_workaround':gic, 'pthread':pthread_report,
+        'dada_input_gpu_hook':input_hook},indent=2)+'\n')
     print(f'LINKED: {final} ({final.stat().st_size} bytes)',flush=True)
 
 

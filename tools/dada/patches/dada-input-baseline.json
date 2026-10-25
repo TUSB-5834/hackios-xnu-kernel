@@ -1,0 +1,6 @@
+{
+  "source": "bsd/dev/redwood_input.c",
+  "baseline_sha256": "55652602c4f7a5fff76ddb052f778bd891b72d4ffe21cdf8f8848219f969aabc",
+  "reason": "dada return bypassed the redwood_adreno_init call in the baseline",
+  "hardware_tested": false
+}

@@ -144,8 +144,26 @@ recipe. It checks the real function table and registration relocation. The final
 kernel links that isolated archive instead of the SDK stub and verifies that
 `pthread_start` calls `pthread_kext_register`. The SDK remains unchanged.
 
-r4 retains the GIC workaround. Compilation, linkage and package checks passed;
-successful boot and GPU initialization still need device evidence.
+r4 retains the GIC workaround. On 2026-10-25 the user confirmed normal boot.
+The retained log records completed BSD initialization, launchd/SpringBoard and
+runtime `running` with heartbeat increasing from 1 to 7. The PC log transport
+later failed with an unknown fastboot status and status-query timeouts; that is
+not a recorded kernel panic or evidence of a long stability test.
+
+### Diagnostic r5 initialization entry
+
+r4 produced no `dada-gpu:` announcements. Its local baseline `redwood_input_init`
+calls `dada_touch_init` and returns before reaching `redwood_adreno_init`, so the
+linked GPU port was never invoked. A normal r4 boot establishes the software
+baseline, not successful GPU initialization or acceleration.
+
+`--dada-input-gpu-hook` patches an isolated, hash-checked copy of the baseline
+input source to call `redwood_adreno_init` before that dada return. The backend
+still does nothing for `dada_gpu=0` or an absent argument. The builder replaces
+only that input object and verifies the call in the final kernel disassembly.
+r5 defaults to `dada_gpu=1`; completion of that diagnostic must be confirmed by
+device log announcements before trying the GMU sequence. Keep r4 for a software
+boot comparison. r5 has no device result yet and supplies no hardware acceleration.
 
 ## Attribution
 

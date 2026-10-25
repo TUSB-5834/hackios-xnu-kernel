@@ -1,0 +1,11 @@
+--- a/bsd/dev/redwood_input.c
++++ b/bsd/dev/redwood_input.c
+@@ -221,6 +221,8 @@
+ 	exit_call = thread_call_allocate(exit_hold_elapsed, NULL);
+ #if defined(XNU_TARGET_DADA)
+ 	dada_touch_init();
++	/* Explicit dada_gpu selects the isolated diagnostic; ordinary boot is unchanged. */
++	redwood_adreno_init();
+ 	printf("dada: framebuffer bring-up; redwood peripheral drivers disabled\n");
+ 	return;
+ #endif
